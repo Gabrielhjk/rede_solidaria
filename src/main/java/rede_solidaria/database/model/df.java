@@ -1,1 +1,0 @@
-// entidades (tabelas do banco)

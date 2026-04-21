@@ -1,3 +1,4 @@
+package rede_solidaria;
 // package br.com.rede_solidaria.rede_solidaria;
 
 // import org.junit.jupiter.api.Test;

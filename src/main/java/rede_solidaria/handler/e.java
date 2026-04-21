@@ -1,1 +1,0 @@
-// execoes globais 
