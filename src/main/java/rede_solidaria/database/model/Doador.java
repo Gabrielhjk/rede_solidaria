@@ -9,8 +9,8 @@ import lombok.experimental.SuperBuilder;
 
 @Getter 
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
+// @AllArgsConstructor
+// @NoArgsConstructor
 @ToString(callSuper = true)
 @SuperBuilder
 public class Doador extends Usuario{

@@ -52,8 +52,22 @@ public class AdministradorService {
             .build());
     }
 
+    public List<Beneficiario> listarBeneficiarios() {
+        return new ArrayList<>(beneficiarios);
+    }
+
+    public List<Doador> listarDoadores() {
+        return new ArrayList<>(doadores);
+    }
 
     public Beneficiario cadastrarBeneficiario(BeneficiarioDto beneficiarioDto) {
+
+        // incremento de id manual por enquanto
+        Integer id = beneficiarios.stream()
+            .mapToInt(Beneficiario::getId)
+            .max()
+            .orElse(0) + 1;
+
         Beneficiario novoBeneficiario = Beneficiario.builder()
             .nome(beneficiarioDto.getNome())
             .telefone(beneficiarioDto.getTelefone())
@@ -92,6 +106,14 @@ public class AdministradorService {
 
 
     public Doador cadastrarDoador(DoadorDto doadorDto) {
+
+
+        // incremento de id manual por enquanto
+        Integer id = doadores.stream()
+            .mapToInt(Doador::getId)
+            .max()
+            .orElse(0) + 1;
+
         Doador novoDoador = Doador.builder()
             .nome(doadorDto.getNome())
             .telefone(doadorDto.getTelefone())
