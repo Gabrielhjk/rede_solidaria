@@ -26,6 +26,10 @@ public class AdministradorService {
             .nome("Maria Silva")
             .telefone("11987654321")
             .email("maria.silva@email.com")
+            .senha("senha123")
+            .endereco("Rua A, 123")
+            .tipoBeneficiario(rede_solidaria.database.model.enums.TipoBeneficiario.ABRIGO)
+            .nivelPrioridade(rede_solidaria.database.model.enums.NivelPrioridade.ALTA)
             .build());
 
         beneficiarios.add(Beneficiario.builder()
@@ -33,6 +37,10 @@ public class AdministradorService {
             .nome("João Souza")
             .telefone("11912345678")
             .email("joao.souza@email.com")
+            .senha("senha123")
+            .endereco("Rua B, 456")
+            .tipoBeneficiario(rede_solidaria.database.model.enums.TipoBeneficiario.INSTITUICAO)
+            .nivelPrioridade(rede_solidaria.database.model.enums.NivelPrioridade.MEDIA)
             .build());
     }
 
@@ -49,6 +57,8 @@ public class AdministradorService {
             .nome("Ana Santos")
             .telefone("11912345678")
             .email("ana.santos@email.com")
+            .senha("1234")
+            .endereco("rua abc, 123")
             .build());
     }
 
@@ -69,6 +79,7 @@ public class AdministradorService {
             .orElse(0) + 1;
 
         Beneficiario novoBeneficiario = Beneficiario.builder()
+            .id(id)
             .nome(beneficiarioDto.getNome())
             .telefone(beneficiarioDto.getTelefone())
             .email(beneficiarioDto.getEmail())
@@ -115,6 +126,7 @@ public class AdministradorService {
             .orElse(0) + 1;
 
         Doador novoDoador = Doador.builder()
+            .id(id)
             .nome(doadorDto.getNome())
             .telefone(doadorDto.getTelefone())
             .email(doadorDto.getEmail())
