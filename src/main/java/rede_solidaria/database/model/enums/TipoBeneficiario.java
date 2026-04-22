@@ -1,6 +1,6 @@
 package rede_solidaria.database.model.enums;
 
-public enum TIpoBeneficiario {
+public enum TipoBeneficiario {
     FAMILIA,
     INSTITUICAO,
     ONG,

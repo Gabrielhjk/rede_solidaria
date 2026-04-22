@@ -1,7 +1,7 @@
 package rede_solidaria.dto;
 
 import rede_solidaria.database.model.enums.NivelPrioridade;
-import rede_solidaria.database.model.enums.TIpoBeneficiario;
+import rede_solidaria.database.model.enums.TipoBeneficiario;
 
 
 import lombok.AllArgsConstructor;
@@ -23,6 +23,6 @@ public class BeneficiarioDto {
     private String email;
     private String senha;
     private String endereco;
-    private TIpoBeneficiario tipoBeneficiario; 
+    private TipoBeneficiario tipoBeneficiario; 
     private NivelPrioridade nivelPrioridade; 
 }
