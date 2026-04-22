@@ -12,8 +12,19 @@ import org.springframework.stereotype.Service;
 public class ItemDoacaoService {
     private static final List<ItemDoacao> itensDoacao = new ArrayList<>();
 
+    public List<ItemDoacao> listarItensDoacao() {
+        return new ArrayList<>(itensDoacao);
+    }
+
     public ItemDoacao cadastrarItemDoacao(ItemDoacaoDto itemDoacaoDto) {
+        
+        Integer id = itensDoacao.stream()
+            .mapToInt(ItemDoacao::getId)
+            .max()
+            .orElse(0) + 1;
+
         ItemDoacao novoItem = ItemDoacao.builder()
+            .id(id)
             .nomeItem(itemDoacaoDto.getNomeItem())
             .categoria(itemDoacaoDto.getCategoria())
             .descricao(itemDoacaoDto.getDescricao())
