@@ -12,7 +12,9 @@ import org.springframework.http.HttpStatus;
 
 import rede_solidaria.service.AdministradorService;
 import rede_solidaria.database.model.Beneficiario;
+import rede_solidaria.database.model.Doador;
 import rede_solidaria.dto.BeneficiarioDto;
+import rede_solidaria.dto.DoadorDto;
 
 import java.util.List;
 
@@ -24,23 +26,42 @@ import lombok.RequiredArgsConstructor;
 public class AdministradorController {
     private final AdministradorService administradorService;
     
-    @GetMapping
+    // rotas para beneficiarios 
+    @GetMapping("/beneficiarios")
     @ResponseStatus(HttpStatus.OK)
     public List<Beneficiario> listarBeneficiarios() {
         return administradorService.listarBeneficiarios();
     }
 
-    @PostMapping
+    @PostMapping("/beneficiarios")
     @ResponseStatus(HttpStatus.CREATED)
     public Beneficiario cadastrarBeneficiario(@RequestBody BeneficiarioDto beneficiarioDto) {
         return administradorService.cadastrarBeneficiario(beneficiarioDto);
     }
     
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/beneficiarios/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarBeneficiario(@PathVariable Integer id) {
         administradorService.deletarBeneficiario(id);
     }
 
+    // rotas para doadores
+    @GetMapping("/doadores")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Doador> listarDoadores() {
+        return administradorService.listarDoadores();
+    }
+
+    @PostMapping("/doadores")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Doador cadastrarDoador(@RequestBody DoadorDto doadorDto) {
+        return administradorService.cadastrarDoador(doadorDto);
+    }
+
+    @DeleteMapping("/doadores/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deletarDoador(@PathVariable Integer id) {
+        administradorService.deletarDoador(id);
+    }
 }
 
