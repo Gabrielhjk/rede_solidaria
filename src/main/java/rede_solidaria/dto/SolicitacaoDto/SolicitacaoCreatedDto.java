@@ -1,6 +1,4 @@
-package rede_solidaria.dto;
-
-import rede_solidaria.database.model.enums.StatusSolicitacao;
+package rede_solidaria.dto.SolicitacaoDto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -15,8 +13,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-public class SolicitacaoDto {
+public class SolicitacaoCreatedDto {
     private Integer quantidadeSolicitada;
     private String justificativa;
-    private StatusSolicitacao statusSolicitacao;
 }

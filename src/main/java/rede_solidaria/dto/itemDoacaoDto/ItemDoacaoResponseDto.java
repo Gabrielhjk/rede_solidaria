@@ -1,8 +1,6 @@
-package rede_solidaria.dto;
+package rede_solidaria.dto.itemDoacaoDto;
 
 import java.time.LocalDateTime;
-
-import rede_solidaria.database.model.enums.StatusItem;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import rede_solidaria.database.model.enums.StatusItem;
 
 @Getter
 @Setter
@@ -17,12 +16,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-public class ItemDoacaoDto {
+public class ItemDoacaoResponseDto {
+    private Integer id;
     private String nomeItem;
     private String categoria;
     private String descricao;
     private Integer quantidade;
     private String estadoDeConversao;
     private StatusItem statusItem;
-    private LocalDateTime dataDoacao;
+    private LocalDateTime dataDoacao;   
 }

@@ -1,4 +1,4 @@
-package rede_solidaria.dto;
+package rede_solidaria.dto.usuarioDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,15 +8,15 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 @Getter
-@Setter 
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(callSuper = true)
+@ToString
 @SuperBuilder
-public class AdministradorDto{
+public class UsuarioResponseDto {
+    private Integer id;
     private String nome;
     private String telefone;
     private String email;
-    private String senha;
     private String endereco;   
 }

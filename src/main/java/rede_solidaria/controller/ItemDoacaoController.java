@@ -15,7 +15,7 @@ import org.springframework.http.HttpStatus;
 
 import rede_solidaria.service.ItemDoacaoService;
 import rede_solidaria.database.model.ItemDoacao;
-import rede_solidaria.dto.ItemDoacaoDto;
+import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoDto;
 import lombok.RequiredArgsConstructor;
 
 @RestController

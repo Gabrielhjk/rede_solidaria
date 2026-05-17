@@ -1,4 +1,4 @@
-package rede_solidaria.dto;
+package rede_solidaria.dto.beneficiarioDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,17 +6,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import rede_solidaria.database.model.enums.NivelPrioridade;
+import rede_solidaria.database.model.enums.TipoBeneficiario;
 
-@Getter 
+@Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
 @SuperBuilder
-public class DoadorDto{
+public class BeneficiarioResponseDto {
+    private Integer id;
     private String nome;
     private String telefone;
     private String email;
-    private String senha;
     private String endereco;
-}
+    private TipoBeneficiario tipoBeneficiario; 
+    private NivelPrioridade nivelPrioridade; 
+}   

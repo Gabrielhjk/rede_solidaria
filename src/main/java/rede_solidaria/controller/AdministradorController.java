@@ -13,8 +13,8 @@ import org.springframework.http.HttpStatus;
 import rede_solidaria.service.AdministradorService;
 import rede_solidaria.database.model.Beneficiario;
 import rede_solidaria.database.model.Doador;
-import rede_solidaria.dto.BeneficiarioDto;
 import rede_solidaria.dto.DoadorDto;
+import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
 
 import java.util.List;
 
@@ -35,8 +35,8 @@ public class AdministradorController {
 
     @PostMapping("/beneficiarios")
     @ResponseStatus(HttpStatus.CREATED)
-    public Beneficiario cadastrarBeneficiario(@RequestBody BeneficiarioDto beneficiarioDto) {
-        return administradorService.cadastrarBeneficiario(beneficiarioDto);
+    public Beneficiario cadastrarBeneficiario(@RequestBody BeneficiarioCreatedDto beneficiarioCreatedDto) {
+        return administradorService.cadastrarBeneficiario(beneficiarioCreatedDto);
     }
     
     @DeleteMapping("/beneficiarios/{id}")

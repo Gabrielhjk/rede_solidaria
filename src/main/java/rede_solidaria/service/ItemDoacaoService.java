@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rede_solidaria.database.model.ItemDoacao;
-import rede_solidaria.dto.ItemDoacaoDto;
+import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoDto;
 
 import org.springframework.stereotype.Service;
 

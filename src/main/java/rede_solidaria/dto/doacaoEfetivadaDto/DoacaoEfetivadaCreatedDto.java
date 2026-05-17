@@ -1,6 +1,4 @@
-package rede_solidaria.dto;
-
-import java.time.LocalDateTime;
+package rede_solidaria.dto.doacaoEfetivadaDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +14,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-public class DoacaoEfetivadaDto {
+public class DoacaoEfetivadaCreatedDto {
     private String obs;
-    private LocalDateTime dataEfetivacao;
 }

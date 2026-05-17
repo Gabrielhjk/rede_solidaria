@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import rede_solidaria.database.model.Beneficiario;
 import rede_solidaria.database.model.Doador;
-import rede_solidaria.dto.BeneficiarioDto;
-import rede_solidaria.dto.DoadorDto;
+import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
+import rede_solidaria.dto.doadorDto.DoadorCreatedDto;
 
 @Service
 public class AdministradorService {
@@ -70,7 +70,7 @@ public class AdministradorService {
         return new ArrayList<>(doadores);
     }
 
-    public Beneficiario cadastrarBeneficiario(BeneficiarioDto beneficiarioDto) {
+    public Beneficiario cadastrarBeneficiario(BeneficiarioCreatedDto beneficiarioDto) {
 
         // incremento de id manual por enquanto
         Integer id = beneficiarios.stream()
@@ -116,8 +116,7 @@ public class AdministradorService {
     }
 
 
-    public Doador cadastrarDoador(DoadorDto doadorDto) {
-
+    public Doador cadastrarDoador(DoadorCreatedDto doadorCreatedDto) {
 
         // incremento de id manual por enquanto
         Integer id = doadores.stream()
@@ -127,11 +126,11 @@ public class AdministradorService {
 
         Doador novoDoador = Doador.builder()
             .id(id)
-            .nome(doadorDto.getNome())
-            .telefone(doadorDto.getTelefone())
-            .email(doadorDto.getEmail())
-            .senha(doadorDto.getSenha())
-            .endereco(doadorDto.getEndereco())
+            .nome(doadorCreatedDto.getNome())
+            .telefone(doadorCreatedDto.getTelefone())
+            .email(doadorCreatedDto.getEmail())
+            .senha(doadorCreatedDto.getSenha())
+            .endereco(doadorCreatedDto.getEndereco())
             .build();
         
         doadores.add(novoDoador);
