@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rede_solidaria.database.model.ItemDoacao;
-import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoDto;
+import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoCreatedDto;
 
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class ItemDoacaoService {
         return new ArrayList<>(itensDoacao);
     }
 
-    public ItemDoacao cadastrarItemDoacao(ItemDoacaoDto itemDoacaoDto) {
+    public ItemDoacao cadastrarItemDoacao(ItemDoacaoCreatedDto itemDoacaoCreatedDto) {
         
         Integer id = itensDoacao.stream()
             .mapToInt(ItemDoacao::getId)
@@ -25,32 +25,32 @@ public class ItemDoacaoService {
 
         ItemDoacao novoItem = ItemDoacao.builder()
             .id(id)
-            .nomeItem(itemDoacaoDto.getNomeItem())
-            .categoria(itemDoacaoDto.getCategoria())
-            .descricao(itemDoacaoDto.getDescricao())
-            .quantidade(itemDoacaoDto.getQuantidade())
-            .estadoDeConversao(itemDoacaoDto.getEstadoDeConversao())
-            .statusItem(itemDoacaoDto.getStatusItem())
-            .dataDoacao(itemDoacaoDto.getDataDoacao())
+            .nomeItem(itemDoacaoCreatedDto.getNomeItem())
+            .categoria(itemDoacaoCreatedDto.getCategoria())
+            .descricao(itemDoacaoCreatedDto.getDescricao())
+            .quantidade(itemDoacaoCreatedDto.getQuantidade())
+            .estadoDeConversao(itemDoacaoCreatedDto.getEstadoDeConversao())
+            .statusItem(itemDoacaoCreatedDto.getStatusItem())
+            .dataDoacao(itemDoacaoCreatedDto.getDataDoacao())
             .build();
 
             itensDoacao.add(novoItem);
             return novoItem;
     }
 
-    public ItemDoacao atualizarDadosItem(Integer id, ItemDoacaoDto itemDoacaoDto) {
+    public ItemDoacao atualizarDadosItem(Integer id, ItemDoacaoCreatedDto itemDoacaoCreatedDto) {
         ItemDoacao itemId = itensDoacao.stream()
             .filter(i -> i.getId().equals(id))
             .findAny()
             .orElseThrow(null);
 
-        itemId.setNomeItem(itemDoacaoDto.getNomeItem());
-        itemId.setCategoria(itemDoacaoDto.getCategoria());
-        itemId.setDescricao(itemDoacaoDto.getDescricao());
-        itemId.setQuantidade(itemDoacaoDto.getQuantidade());
-        itemId.setEstadoDeConversao(itemDoacaoDto.getEstadoDeConversao());
-        itemId.setStatusItem(itemDoacaoDto.getStatusItem());
-        itemId.setDataDoacao(itemDoacaoDto.getDataDoacao());
+        itemId.setNomeItem(itemDoacaoCreatedDto.getNomeItem());
+        itemId.setCategoria(itemDoacaoCreatedDto.getCategoria());
+        itemId.setDescricao(itemDoacaoCreatedDto.getDescricao());
+        itemId.setQuantidade(itemDoacaoCreatedDto.getQuantidade());
+        itemId.setEstadoDeConversao(itemDoacaoCreatedDto.getEstadoDeConversao());
+        itemId.setStatusItem(itemDoacaoCreatedDto.getStatusItem());
+        itemId.setDataDoacao(itemDoacaoCreatedDto.getDataDoacao());
 
         return itemId;
     }

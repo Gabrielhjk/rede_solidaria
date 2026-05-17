@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import rede_solidaria.service.ItemDoacaoService;
 import rede_solidaria.database.model.ItemDoacao;
-import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoDto;
+import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoCreatedDto;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -24,28 +25,25 @@ import lombok.RequiredArgsConstructor;
 public class ItemDoacaoController {
     private final ItemDoacaoService itemDoacaoService;
 
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<ItemDoacao> listarItensDoacao() {
-        return itemDoacaoService.listarItensDoacao();
+    @GetMapping("/listar")
+    public ResponseEntity<List<ItemDoacao>> listarItensDoacao() {
+        return new ResponseEntity<>(itemDoacaoService.listarItensDoacao(), HttpStatus.OK);
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public ItemDoacao cadastrarItemDoacao(@RequestBody ItemDoacaoDto itemDoacaoDto) {
-        return itemDoacaoService.cadastrarItemDoacao(itemDoacaoDto);
+    public ResponseEntity<ItemDoacao> cadastrarItemDoacao(@RequestBody ItemDoacaoCreatedDto itemDoacaoCreatedDto) {
+        return new ResponseEntity<>(itemDoacaoService.cadastrarItemDoacao(itemDoacaoCreatedDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public ItemDoacao atualizarDadosItem(@PathVariable Integer id, @RequestBody ItemDoacaoDto itemDoacaoDto) {
-        return itemDoacaoService.atualizarDadosItem(id, itemDoacaoDto);
+    public ResponseEntity<ItemDoacao> atualizarDadosItem(@PathVariable Integer id, @RequestBody ItemDoacaoCreatedDto itemDoacaoCreatedDto) {
+        return new ResponseEntity<>(itemDoacaoService.atualizarDadosItem(id, itemDoacaoCreatedDto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletarItemDoacao(@PathVariable Integer id) {
+    public ResponseEntity<Void> deletarItemDoacao(@PathVariable Integer id) {
         itemDoacaoService.deletarItemDoacao(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.HttpStatus;
 
-import rede_solidaria.service.AdministradorService;
+import rede_solidaria.service.DoadorService;
 import rede_solidaria.database.model.Beneficiario;
 import rede_solidaria.database.model.Doador;
-import rede_solidaria.dto.DoadorDto;
+import rede_solidaria.dto.doadorDto.DoadorCreatedDto;
 import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
 
 import java.util.List;
@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/admin")
 public class AdministradorController {
-    private final AdministradorService administradorService;
+    private final DoadorService administradorService;
     
     // rotas para beneficiarios 
     @GetMapping("/beneficiarios")
@@ -54,8 +54,8 @@ public class AdministradorController {
 
     @PostMapping("/doadores")
     @ResponseStatus(HttpStatus.CREATED)
-    public Doador cadastrarDoador(@RequestBody DoadorDto doadorDto) {
-        return administradorService.cadastrarDoador(doadorDto);
+    public Doador cadastrarDoador(@RequestBody DoadorCreatedDto doadorCreatedDto) {
+        return administradorService.cadastrarDoador(doadorCreatedDto);
     }
 
     @DeleteMapping("/doadores/{id}")
