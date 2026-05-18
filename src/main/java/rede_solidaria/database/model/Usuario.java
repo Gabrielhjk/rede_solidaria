@@ -1,11 +1,17 @@
 package rede_solidaria.database.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.GeneratedValue;
+import lombok.experimental.SuperBuilder;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import jakarta.persistence.Id;
 import lombok.ToString;
-import lombok.experimental.SuperBuilder;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -13,11 +19,19 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @ToString
 @SuperBuilder
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private String telefone;
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private String senha;
     private String endereco;
 }

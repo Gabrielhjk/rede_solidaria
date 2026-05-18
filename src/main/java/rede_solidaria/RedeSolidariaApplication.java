@@ -9,5 +9,4 @@ public class RedeSolidariaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RedeSolidariaApplication.class, args);
 	}
-
 }

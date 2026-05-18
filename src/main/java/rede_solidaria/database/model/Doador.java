@@ -1,5 +1,12 @@
 package rede_solidaria.database.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.Builder;
 // import lombok.AllArgsConstructor;
 // import lombok.NoArgsConstructor;
 import lombok.Getter;
@@ -13,6 +20,11 @@ import lombok.experimental.SuperBuilder;
 // @NoArgsConstructor
 @ToString(callSuper = true)
 @SuperBuilder
+@Entity
+@Table(name = "doadores")
 public class Doador extends Usuario{
-    
+
+    @OneToMany(mappedBy = "doador")
+    @Builder.Default
+    private Set<ItemDoacao> itensDoacao = new HashSet<>();
 }
