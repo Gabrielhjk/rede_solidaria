@@ -3,62 +3,36 @@ package rede_solidaria.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
 import rede_solidaria.database.model.Beneficiario;
 import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
+import rede_solidaria.database.repository.BeneficiarioRepository;
 
+@Service
+@RequiredArgsConstructor
 public class BeneficiarioService {
-    
-    private static final List<Beneficiario> beneficiarios = new ArrayList<>();
-
-    static {
-        beneficiarios.add(Beneficiario.builder()
-            .id(1)
-            .nome("Maria Silva")
-            .telefone("11987654321")
-            .email("maria.silva@email.com")
-            .senha("senha123")
-            .endereco("Rua A, 123")
-            .tipoBeneficiario(rede_solidaria.database.model.enums.TipoBeneficiario.ABRIGO)
-            .nivelPrioridade(rede_solidaria.database.model.enums.NivelPrioridade.ALTA)
-            .build());
-
-        beneficiarios.add(Beneficiario.builder()
-            .id(2)
-            .nome("João Souza")
-            .telefone("11912345678")
-            .email("joao.souza@email.com")
-            .senha("senha123")
-            .endereco("Rua B, 456")
-            .tipoBeneficiario(rede_solidaria.database.model.enums.TipoBeneficiario.INSTITUICAO)
-            .nivelPrioridade(rede_solidaria.database.model.enums.NivelPrioridade.MEDIA)
-            .build());
-    }
+    private BeneficiarioRepository beneficiarioRepository;
 
     public List<Beneficiario> listarBeneficiarios() {
-        return new ArrayList<>(beneficiarios);
+        return beneficiarioRepository.findAll();
     }
 
- public Beneficiario cadastrarBeneficiario(BeneficiarioCreatedDto beneficiarioDto) {
-
-        // incremento de id manual por enquanto
-        Integer id = beneficiarios.stream()
-            .mapToInt(Beneficiario::getId)
-            .max()
-            .orElse(0) + 1;
+ public void cadastrarBeneficiario(BeneficiarioCreatedDto beneficiarioCreatedDto) {
 
         Beneficiario novoBeneficiario = Beneficiario.builder()
-            .id(id)
-            .nome(beneficiarioDto.getNome())
-            .telefone(beneficiarioDto.getTelefone())
-            .email(beneficiarioDto.getEmail())
-            .senha(beneficiarioDto.getSenha())
-            .endereco(beneficiarioDto.getEndereco())
-            .tipoBeneficiario(beneficiarioDto.getTipoBeneficiario())
-            .nivelPrioridade(beneficiarioDto.getNivelPrioridade())
+            .nome(beneficiarioCreatedDto.getNome())
+            .telefone(beneficiarioCreatedDto.getTelefone())
+            .email(beneficiarioCreatedDto.getEmail())
+            .senha(beneficiarioCreatedDto.getSenha())
+            .endereco(beneficiarioCreatedDto.getEndereco())
+            .tipoBeneficiario(beneficiarioCreatedDto.getTipoBeneficiario())
+            .nivelPrioridade(beneficiarioCreatedDto.getNivelPrioridade())
             .build();
             
-        beneficiarios.add(novoBeneficiario);
-        return novoBeneficiario;
+        beneficiarioRepository.save(novoBeneficiario);
+
     }
 
     // ver se vou permitir que o admin possa atualizar os dados do beneficiario, ou se ele so pode cadastrar, listar e deletar
@@ -80,6 +54,6 @@ public class BeneficiarioService {
     // }
 
     public void deletarBeneficiario(Integer id) {
-        beneficiarios.removeIf(b -> b.getId().equals(id));
+        beneficiarioRepository.removeIf(b -> b.getId().equals(id));
     }
 }

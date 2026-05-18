@@ -1,1 +1,0 @@
-// querys para fazer as busca no banco

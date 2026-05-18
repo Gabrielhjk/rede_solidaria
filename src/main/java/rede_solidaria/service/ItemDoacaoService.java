@@ -8,7 +8,10 @@ import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoCreatedDto;
 
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class ItemDoacaoService {
     private static final List<ItemDoacao> itensDoacao = new ArrayList<>();
 
@@ -31,7 +34,7 @@ public class ItemDoacaoService {
             .quantidade(itemDoacaoCreatedDto.getQuantidade())
             .estadoDeConversao(itemDoacaoCreatedDto.getEstadoDeConversao())
             .statusItem(itemDoacaoCreatedDto.getStatusItem())
-            .dataDoacao(itemDoacaoCreatedDto.getDataDoacao())
+            // .dataDoacao(itemDoacaoCreatedDto.getDataDoacao())
             .build();
 
             itensDoacao.add(novoItem);
@@ -50,7 +53,7 @@ public class ItemDoacaoService {
         itemId.setQuantidade(itemDoacaoCreatedDto.getQuantidade());
         itemId.setEstadoDeConversao(itemDoacaoCreatedDto.getEstadoDeConversao());
         itemId.setStatusItem(itemDoacaoCreatedDto.getStatusItem());
-        itemId.setDataDoacao(itemDoacaoCreatedDto.getDataDoacao());
+        // itemId.setDataDoacao(itemDoacaoCreatedDto.getDataDoacao());
 
         return itemId;
     }

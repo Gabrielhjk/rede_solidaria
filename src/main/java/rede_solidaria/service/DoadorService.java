@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
 import rede_solidaria.database.model.Doador;
 import rede_solidaria.dto.doadorDto.DoadorCreatedDto;
 
 @Service
+@RequiredArgsConstructor
 public class DoadorService {
     
     private static final List<Doador> doadores = new ArrayList<>();
