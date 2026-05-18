@@ -40,7 +40,7 @@ public class ItemDoacao {
     private String nomeItem;
     @Column(nullable = false)
     private String categoria;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     private String descricao;
     @Column(nullable = false)
     private Integer quantidade;

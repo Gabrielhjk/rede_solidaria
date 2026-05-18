@@ -1,6 +1,9 @@
 package rede_solidaria.controller;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 
 import rede_solidaria.service.BeneficiarioService;
 import rede_solidaria.database.model.Beneficiario;
@@ -20,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+@Validated
 @RequestMapping("/admin")
 public class BeneficiarioController {
     private final BeneficiarioService beneficiarioService;
@@ -30,8 +35,9 @@ public class BeneficiarioController {
     }
 
     @PostMapping("/beneficiarios")
-    public ResponseEntity<Beneficiario> cadastrarBeneficiario(@RequestBody BeneficiarioCreatedDto beneficiarioCreatedDto) {
-        return new ResponseEntity<>(beneficiarioService.cadastrarBeneficiario(beneficiarioCreatedDto), HttpStatus.CREATED);
+    public ResponseEntity<Void> cadastrarBeneficiario(@Valid @RequestBody BeneficiarioCreatedDto beneficiarioCreatedDto) {
+        beneficiarioService.cadastrarBeneficiario(beneficiarioCreatedDto) ;
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
     @DeleteMapping("/beneficiarios/{id}")

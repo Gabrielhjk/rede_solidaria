@@ -1,5 +1,8 @@
 package rede_solidaria.dto.doacaoEfetivadaDto;
 
+import org.hibernate.validator.constraints.Length;
+
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,5 +18,6 @@ import lombok.ToString;
 @ToString
 @Builder
 public class DoacaoEfetivadaCreatedDto {
+    @Size(max = 255)
     private String obs;
 }
