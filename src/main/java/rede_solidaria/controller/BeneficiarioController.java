@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 
 import rede_solidaria.service.AdministradorBeneficiarioService;
-import rede_solidaria.service.BeneficiarioService;
 import rede_solidaria.database.model.Beneficiario;
 import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
 
