@@ -8,6 +8,8 @@ import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -27,8 +29,10 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @Table(name = "beneficiarios")
 public class Beneficiario extends Usuario{
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TipoBeneficiario tipoBeneficiario;
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false) 
     private NivelPrioridade nivelPrioridade; 
 

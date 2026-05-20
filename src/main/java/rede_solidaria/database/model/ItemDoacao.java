@@ -8,6 +8,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -46,6 +48,7 @@ public class ItemDoacao {
     private Integer quantidade;
     @Column(nullable = false)
     private String estadoDeConversao;
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false) 
     private StatusItem statusItem;
     @CreationTimestamp

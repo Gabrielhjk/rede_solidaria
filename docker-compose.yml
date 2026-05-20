@@ -1,0 +1,46 @@
+services:
+  rede_solidaria:
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+        SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/rede_solidaria
+        SPRING_DATASOURCE_USERNAME: ${DATABASE_USERNAME}
+        SPRING_DATASOURCE_PASSWORD: ${DATABASE_PASSWORD}
+    depends_on:
+      - postgres
+
+  postgres:
+      image: postgres:15
+      container_name: postgres_rede_solidaria
+      env_file:
+        - .env
+      environment:
+        POSTGRES_USER: ${DATABASE_USERNAME}
+        POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+        POSTGRES_DB: ${DATABASE_DB}
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+      ports:
+        - "5433:5432"
+
+  pgadmin:
+      image: dpage/pgadmin4
+      container_name: pgadmin_rede_solidaria
+      env_file:
+        - .env
+      environment:
+        PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL} 
+        PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      volumes:
+        - pgadmin_data:/var/lib/pgadmin
+      ports:
+        - "5050:80"
+      depends_on: 
+        - postgres
+
+volumes:
+  postgres_data:
+  pgadmin_data:
