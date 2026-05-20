@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 
+import rede_solidaria.service.AdministradorBeneficiarioService;
 import rede_solidaria.service.BeneficiarioService;
 import rede_solidaria.database.model.Beneficiario;
 import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
@@ -27,22 +28,22 @@ import lombok.RequiredArgsConstructor;
 @Validated
 @RequestMapping("/admin")
 public class BeneficiarioController {
-    private final BeneficiarioService beneficiarioService;
+    private final AdministradorBeneficiarioService administradorBeneficiarioService;
     
     @GetMapping("/beneficiarios")
     public ResponseEntity<List<Beneficiario>> listarBeneficiarios() {
-        return new ResponseEntity<>(beneficiarioService.listarBeneficiarios(), HttpStatus.OK);
+        return new ResponseEntity<>(administradorBeneficiarioService.listarBeneficiarios(), HttpStatus.OK);
     }
 
     @PostMapping("/beneficiarios")
     public ResponseEntity<Void> cadastrarBeneficiario(@Valid @RequestBody BeneficiarioCreatedDto beneficiarioCreatedDto) {
-        beneficiarioService.cadastrarBeneficiario(beneficiarioCreatedDto) ;
+        administradorBeneficiarioService.cadastrarBeneficiario(beneficiarioCreatedDto) ;
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
     @DeleteMapping("/beneficiarios/{id}")
     public ResponseEntity<Void> deletarBeneficiario(@PathVariable Integer id) {
-        beneficiarioService.deletarBeneficiario(id);
+        administradorBeneficiarioService.deletarBeneficiario(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

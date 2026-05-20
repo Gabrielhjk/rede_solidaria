@@ -2,8 +2,6 @@ package rede_solidaria.dto.itemDoacaoDto;
 
 import rede_solidaria.database.model.enums.StatusItem;
 
-import org.hibernate.validator.constraints.Length;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

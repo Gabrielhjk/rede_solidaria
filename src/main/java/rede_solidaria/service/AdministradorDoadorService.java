@@ -7,45 +7,21 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import rede_solidaria.database.model.Doador;
+import rede_solidaria.database.repository.AdministradorDoadorRepository;
 import rede_solidaria.dto.doadorDto.DoadorCreatedDto;
 
 @Service
 @RequiredArgsConstructor
-public class DoadorService {
-    
-    private static final List<Doador> doadores = new ArrayList<>();
-    
-    static {
-        doadores.add(Doador.builder()
-            .id(1)
-            .nome("Carlos Oliveira")
-            .telefone("11987654321")
-            .email("carlos.oliveira@email.com")
-            .build());
-        doadores.add(Doador.builder()
-            .id(2)
-            .nome("Ana Santos")
-            .telefone("11912345678")
-            .email("ana.santos@email.com")
-            .senha("1234")
-            .endereco("rua abc, 123")
-            .build());
-    }
+public class AdministradorDoadorService {
+    private AdministradorDoadorRepository administradorDoadorRepository;
 
     public List<Doador> listarDoadores() {
-        return new ArrayList<>(doadores);
+        return administradorDoadorRepository.findAll();
     }
 
-    public Doador cadastrarDoador(DoadorCreatedDto doadorCreatedDto) {
-
-        // incremento de id manual por enquanto
-        Integer id = doadores.stream()
-            .mapToInt(Doador::getId)
-            .max()
-            .orElse(0) + 1;
+    public void cadastrarDoador(DoadorCreatedDto doadorCreatedDto) {
 
         Doador novoDoador = Doador.builder()
-            .id(id)
             .nome(doadorCreatedDto.getNome())
             .telefone(doadorCreatedDto.getTelefone())
             .email(doadorCreatedDto.getEmail())
@@ -53,8 +29,7 @@ public class DoadorService {
             .endereco(doadorCreatedDto.getEndereco())
             .build();
         
-        doadores.add(novoDoador);
-        return novoDoador;
+            administradorDoadorRepository.save(novoDoador);
     }
     
     // ver se vou permitir que o admin possa atualizar os dados do doador, ou se ele so pode cadastrar, listar e deletar
@@ -75,6 +50,6 @@ public class DoadorService {
 
 
     public void deletarDoador(Integer id) {
-        doadores.removeIf(d -> d.getId().equals(id));
+        administradorDoadorRepository.deleteById(id);
     }
 }

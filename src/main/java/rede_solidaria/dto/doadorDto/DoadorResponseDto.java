@@ -1,7 +1,5 @@
 package rede_solidaria.dto.doadorDto;
 
-import org.springframework.web.bind.annotation.BindParam;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

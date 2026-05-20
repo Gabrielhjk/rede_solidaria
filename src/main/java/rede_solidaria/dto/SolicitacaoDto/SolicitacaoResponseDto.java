@@ -1,7 +1,5 @@
 package rede_solidaria.dto.SolicitacaoDto;
 
-import org.hibernate.validator.constraints.Length;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

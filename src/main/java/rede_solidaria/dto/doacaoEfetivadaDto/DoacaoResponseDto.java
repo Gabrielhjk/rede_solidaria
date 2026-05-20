@@ -2,8 +2,6 @@ package rede_solidaria.dto.doacaoEfetivadaDto;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.validator.constraints.Length;
-
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

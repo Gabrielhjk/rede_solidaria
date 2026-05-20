@@ -5,7 +5,7 @@ spring:
   application:
       name: rede_solidaria
   datasource:
-      url: jdbc:postgresql://postgres:5432/rede_solidaria
+      url: jdbc:postgresql://localhost:8080/rede_solidaria
       username: ${DATABASE_USERNAME}
       password: ${DATABASE_PASSWORD}
   jpa:

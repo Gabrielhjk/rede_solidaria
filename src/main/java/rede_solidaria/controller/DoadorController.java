@@ -14,26 +14,27 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 import rede_solidaria.database.model.Doador;
 import rede_solidaria.dto.doadorDto.DoadorCreatedDto;
-import rede_solidaria.service.DoadorService;
+import rede_solidaria.service.AdministradorDoadorService;
 
 @RestController
 @RequiredArgsConstructor
 public class DoadorController {
-    private final DoadorService doadorService;
+    private final AdministradorDoadorService administradorDoadorService;
 
     @GetMapping("/doadores")
     public ResponseEntity<List<Doador>> listarDoadores() {
-        return new ResponseEntity<>(doadorService.listarDoadores(), HttpStatus.OK);
+        return new ResponseEntity<>(administradorDoadorService.listarDoadores(), HttpStatus.OK);
     }
 
     @PostMapping("/doadores")
-    public ResponseEntity<Doador> cadastrarDoador(@RequestBody DoadorCreatedDto doadorCreatedDto) {
-        return new ResponseEntity<>(doadorService.cadastrarDoador(doadorCreatedDto), HttpStatus.CREATED);
+    public ResponseEntity<Void> cadastrarDoador(@RequestBody DoadorCreatedDto doadorCreatedDto) {
+        administradorDoadorService.cadastrarDoador(doadorCreatedDto);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/doadores/{id}")
     public ResponseEntity<Void> deletarDoador(@PathVariable Integer id) {
-        doadorService.deletarDoador(id);
+        administradorDoadorService.deletarDoador(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     } 
 }
