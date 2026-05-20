@@ -38,10 +38,10 @@ public class Solicitacao {
     private StatusSolicitacao statusSolicitacao;
 
     @ManyToOne
-    @JoinColumn(table = "item_doacao_id")
+    @JoinColumn(name = "item_doacao_id")
     private ItemDoacaoEfetivada itemDoacao;
 
     @ManyToOne
-    @JoinColumn(table = "beneficiario_id")
+    @JoinColumn(name = "beneficiario_id")
     private Beneficiario beneficiario;
 }

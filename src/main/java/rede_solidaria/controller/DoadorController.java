@@ -4,13 +4,16 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import rede_solidaria.database.model.Doador;
 import rede_solidaria.dto.doadorDto.DoadorCreatedDto;
@@ -18,6 +21,8 @@ import rede_solidaria.service.AdministradorDoadorService;
 
 @RestController
 @RequiredArgsConstructor
+@Validated
+@RequestMapping("/admin")
 public class DoadorController {
     private final AdministradorDoadorService administradorDoadorService;
 
@@ -27,7 +32,7 @@ public class DoadorController {
     }
 
     @PostMapping("/doadores")
-    public ResponseEntity<Void> cadastrarDoador(@RequestBody DoadorCreatedDto doadorCreatedDto) {
+    public ResponseEntity<Void> cadastrarDoador(@Valid @RequestBody DoadorCreatedDto doadorCreatedDto) {
         administradorDoadorService.cadastrarDoador(doadorCreatedDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

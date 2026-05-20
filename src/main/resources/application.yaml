@@ -11,5 +11,5 @@ spring:
       db: ${DATABASE_DB}
   jpa:
       hibernate:
-        ddl-auto: create-only;
-        show-sql: true;
+        ddl-auto: update
+        show-sql: true

@@ -10,6 +10,7 @@ import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import lombok.ToString;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @ToString
 @SuperBuilder
-@Entity
-@Table(name = "usuarios")
+@MappedSuperclass
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

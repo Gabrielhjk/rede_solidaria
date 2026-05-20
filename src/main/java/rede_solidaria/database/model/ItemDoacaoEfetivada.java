@@ -59,6 +59,6 @@ public class ItemDoacaoEfetivada {
     private Set<Solicitacao> solicitacoes = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(table = "doador_id")
+    @JoinColumn(name = "doador_id")
     private Doador doador;
 }

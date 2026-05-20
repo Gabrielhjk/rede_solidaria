@@ -12,7 +12,7 @@ import rede_solidaria.database.repository.AdministradorBeneficiarioRepository;
 @Service
 @RequiredArgsConstructor
 public class AdministradorBeneficiarioService {
-    private AdministradorBeneficiarioRepository administradorBeneficiarioRepository;
+    private final AdministradorBeneficiarioRepository administradorBeneficiarioRepository;
 
     public List<Beneficiario> listarBeneficiarios() {
         return administradorBeneficiarioRepository.findAll();

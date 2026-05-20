@@ -1,6 +1,5 @@
 package rede_solidaria.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ import rede_solidaria.dto.doadorDto.DoadorCreatedDto;
 @Service
 @RequiredArgsConstructor
 public class AdministradorDoadorService {
-    private AdministradorDoadorRepository administradorDoadorRepository;
+    private final AdministradorDoadorRepository administradorDoadorRepository;
 
     public List<Doador> listarDoadores() {
         return administradorDoadorRepository.findAll();
