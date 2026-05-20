@@ -3,8 +3,8 @@ package rede_solidaria.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import rede_solidaria.database.model.ItemDoacao;
-import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoCreatedDto;
+import rede_solidaria.database.model.ItemDoacaoEfetivada;
+import rede_solidaria.dto.itemDoacaoEfetivadaDto.ItemDoacaoEfetivadaCreatedDto;
 
 import org.springframework.stereotype.Service;
 
@@ -13,20 +13,20 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ItemDoacaoService {
-    private static final List<ItemDoacao> itensDoacao = new ArrayList<>();
+    private static final List<ItemDoacaoEfetivada> itensDoacao = new ArrayList<>();
 
-    public List<ItemDoacao> listarItensDoacao() {
+    public List<ItemDoacaoEfetivada> listarItensDoacao() {
         return new ArrayList<>(itensDoacao);
     }
 
-    public ItemDoacao cadastrarItemDoacao(ItemDoacaoCreatedDto itemDoacaoCreatedDto) {
+    public ItemDoacaoEfetivada cadastrarItemDoacao(ItemDoacaoEfetivadaCreatedDto itemDoacaoCreatedDto) {
         
         Integer id = itensDoacao.stream()
-            .mapToInt(ItemDoacao::getId)
+            .mapToInt(ItemDoacaoEfetivada::getId)
             .max()
             .orElse(0) + 1;
 
-        ItemDoacao novoItem = ItemDoacao.builder()
+        ItemDoacaoEfetivada novoItem = ItemDoacaoEfetivada.builder()
             .id(id)
             .nomeItem(itemDoacaoCreatedDto.getNomeItem())
             .categoria(itemDoacaoCreatedDto.getCategoria())
@@ -41,8 +41,8 @@ public class ItemDoacaoService {
             return novoItem;
     }
 
-    public ItemDoacao atualizarDadosItem(Integer id, ItemDoacaoCreatedDto itemDoacaoCreatedDto) {
-        ItemDoacao itemId = itensDoacao.stream()
+    public ItemDoacaoEfetivada atualizarDadosItem(Integer id, ItemDoacaoEfetivadaCreatedDto itemDoacaoCreatedDto) {
+        ItemDoacaoEfetivada itemId = itensDoacao.stream()
             .filter(i -> i.getId().equals(id))
             .findAny()
             .orElseThrow(null);

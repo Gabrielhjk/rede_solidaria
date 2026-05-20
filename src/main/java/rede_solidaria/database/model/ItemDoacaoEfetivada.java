@@ -34,7 +34,7 @@ import lombok.ToString;
 @Builder
 @Entity
 @Table(name = "item_doacao")
-public class ItemDoacao {
+public class ItemDoacaoEfetivada {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;

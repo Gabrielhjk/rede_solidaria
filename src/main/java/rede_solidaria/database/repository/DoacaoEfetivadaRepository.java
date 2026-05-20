@@ -1,5 +1,9 @@
 package rede_solidaria.database.repository;
 
-public class DoacaoEfetivadaRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import rede_solidaria.database.model.DoacaoEfetivada;
+
+public interface DoacaoEfetivadaRepository extends JpaRepository<DoacaoEfetivada, Integer>{
     
 }

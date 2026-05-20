@@ -1,4 +1,4 @@
-package rede_solidaria.dto.itemDoacaoDto;
+package rede_solidaria.dto.itemDoacaoEfetivadaDto;
 
 import rede_solidaria.database.model.enums.StatusItem;
 
@@ -17,7 +17,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-public class ItemDoacaoCreatedDto {
+public class ItemDoacaoEfetivadaCreatedDto {
     @NotBlank
     private String nomeItem;
     @NotBlank

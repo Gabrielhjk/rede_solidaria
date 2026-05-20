@@ -26,5 +26,5 @@ public class Doador extends Usuario{
 
     @OneToMany(mappedBy = "doador")
     @Builder.Default
-    private Set<ItemDoacao> itensDoacao = new HashSet<>();
+    private Set<ItemDoacaoEfetivada> itensDoacao = new HashSet<>();
 }

@@ -39,7 +39,7 @@ public class Solicitacao {
 
     @ManyToOne
     @JoinColumn(table = "item_doacao_id")
-    private ItemDoacao itemDoacao;
+    private ItemDoacaoEfetivada itemDoacao;
 
     @ManyToOne
     @JoinColumn(table = "beneficiario_id")

@@ -14,8 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import rede_solidaria.service.ItemDoacaoService;
-import rede_solidaria.database.model.ItemDoacao;
-import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoCreatedDto;
+import rede_solidaria.database.model.ItemDoacaoEfetivada;
+import rede_solidaria.dto.itemDoacaoEfetivadaDto.ItemDoacaoEfetivadaCreatedDto;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -25,17 +25,17 @@ public class ItemDoacaoController {
     private final ItemDoacaoService itemDoacaoService;
 
     @GetMapping("/listar")
-    public ResponseEntity<List<ItemDoacao>> listarItensDoacao() {
+    public ResponseEntity<List<ItemDoacaoEfetivada>> listarItensDoacao() {
         return new ResponseEntity<>(itemDoacaoService.listarItensDoacao(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<ItemDoacao> cadastrarItemDoacao(@RequestBody ItemDoacaoCreatedDto itemDoacaoCreatedDto) {
+    public ResponseEntity<ItemDoacaoEfetivada> cadastrarItemDoacao(@RequestBody ItemDoacaoEfetivadaCreatedDto itemDoacaoCreatedDto) {
         return new ResponseEntity<>(itemDoacaoService.cadastrarItemDoacao(itemDoacaoCreatedDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ItemDoacao> atualizarDadosItem(@PathVariable Integer id, @RequestBody ItemDoacaoCreatedDto itemDoacaoCreatedDto) {
+    public ResponseEntity<ItemDoacaoEfetivada> atualizarDadosItem(@PathVariable Integer id, @RequestBody ItemDoacaoEfetivadaCreatedDto itemDoacaoCreatedDto) {
         return new ResponseEntity<>(itemDoacaoService.atualizarDadosItem(id, itemDoacaoCreatedDto), HttpStatus.OK);
     }
 
