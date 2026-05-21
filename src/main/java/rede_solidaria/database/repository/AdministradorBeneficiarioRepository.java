@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import rede_solidaria.database.model.Beneficiario;
 
 public interface AdministradorBeneficiarioRepository extends JpaRepository<Beneficiario, Integer>{
-    
+    boolean existsByEmail(String email);
 }

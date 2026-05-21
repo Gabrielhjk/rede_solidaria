@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import rede_solidaria.database.model.Beneficiario;
 import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
+import rede_solidaria.handler.BusinessException;
 import rede_solidaria.database.repository.AdministradorBeneficiarioRepository;
 
 @Service
@@ -19,6 +20,12 @@ public class AdministradorBeneficiarioService {
     }
 
  public void cadastrarBeneficiario(BeneficiarioCreatedDto beneficiarioCreatedDto) {
+
+        if (administradorBeneficiarioRepository.existsByEmail(beneficiarioCreatedDto.getEmail())) {
+            throw new BusinessException("Beneficiário já cadastrado com este email.");
+        }
+
+        
 
         Beneficiario novoBeneficiario = Beneficiario.builder()
             .nome(beneficiarioCreatedDto.getNome())

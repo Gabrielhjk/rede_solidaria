@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import rede_solidaria.database.model.Doador;
 import rede_solidaria.database.repository.AdministradorDoadorRepository;
 import rede_solidaria.dto.doadorDto.DoadorCreatedDto;
+import rede_solidaria.handler.BusinessException;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +20,9 @@ public class AdministradorDoadorService {
     }
 
     public void cadastrarDoador(DoadorCreatedDto doadorCreatedDto) {
+        if (administradorDoadorRepository.existsByEmail(doadorCreatedDto.getEmail())) {
+            throw new BusinessException("Doador já cadastrado com este email.");
+        }
 
         Doador novoDoador = Doador.builder()
             .nome(doadorCreatedDto.getNome())

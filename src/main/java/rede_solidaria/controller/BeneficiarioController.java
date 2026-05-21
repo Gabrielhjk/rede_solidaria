@@ -36,7 +36,7 @@ public class BeneficiarioController {
 
     @PostMapping("/beneficiarios")
     public ResponseEntity<Void> cadastrarBeneficiario(@Valid @RequestBody BeneficiarioCreatedDto beneficiarioCreatedDto) {
-        administradorBeneficiarioService.cadastrarBeneficiario(beneficiarioCreatedDto) ;
+        administradorBeneficiarioService.cadastrarBeneficiario(beneficiarioCreatedDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
