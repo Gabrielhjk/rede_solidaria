@@ -17,8 +17,8 @@ import lombok.ToString;
 @ToString
 @Builder
 public class SolicitacaoCreatedDto {
-    @NotBlank
+    @NotBlank(message = "O nome do item é obrigatório")
     private Integer quantidadeSolicitada;
-    @Size(max = 255)
+    @Size(max = 255, message = "A justificativa deve conter no máximo 255 caracteres")
     private String justificativa;
 }

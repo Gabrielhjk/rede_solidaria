@@ -16,14 +16,14 @@ import lombok.experimental.SuperBuilder;
 @ToString(callSuper = true)
 @SuperBuilder
 public class AdministradorCreatedDto{
-    @NotBlank
+    @NotBlank(message = "O nome é obrigatório")
     private String nome;
-    @NotBlank
+    @NotBlank(message = "O telefone é obrigatório")
     private String telefone;
-    @NotBlank
-    @Email
+    @NotBlank(message = "O email é obrigatório")
+    @Email(message = "O email deve ser válido")
     private String email;
-    @NotBlank
+    @NotBlank(message = "A senha é obrigatória")
     private String senha;
     private String endereco;   
 }

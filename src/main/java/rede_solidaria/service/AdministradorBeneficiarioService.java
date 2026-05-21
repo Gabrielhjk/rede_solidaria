@@ -23,9 +23,7 @@ public class AdministradorBeneficiarioService {
 
         if (administradorBeneficiarioRepository.existsByEmail(beneficiarioCreatedDto.getEmail())) {
             throw new BusinessException("Beneficiário já cadastrado com este email.");
-        }
-
-        
+        }        
 
         Beneficiario novoBeneficiario = Beneficiario.builder()
             .nome(beneficiarioCreatedDto.getNome())

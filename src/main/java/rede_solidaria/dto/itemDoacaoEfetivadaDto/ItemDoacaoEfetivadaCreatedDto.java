@@ -19,17 +19,17 @@ import lombok.ToString;
 @ToString
 @Builder
 public class ItemDoacaoEfetivadaCreatedDto {
-    @NotBlank
+    @NotBlank(message = "O nome do item é obrigatório")
     private String nomeItem;
-    @NotBlank
+    @NotBlank(message = "A categoria é obrigatória")
     private String categoria;
-    @NotBlank
-    @Size(max = 255)
+    @NotBlank(message = "A descrição é obrigatória")
+    @Size(max = 255, message = "A descrição deve conter no máximo 255 caracteres")
     private String descricao;
-    @NotBlank
+    @NotBlank(message = "A quantidade é obrigatória")
     private Integer quantidade;
-    @NotBlank
+    @NotBlank(message = "O estado de conversão é obrigatório")
     private String estadoDeConversao;
-    @NotNull
+    @NotNull(message = "O status do item é obrigatório")
     private StatusItem statusItem;
 }
