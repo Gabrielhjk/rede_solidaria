@@ -2,6 +2,7 @@ package rede_solidaria.dto.beneficiarioDto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,8 +28,8 @@ public class BeneficiarioResponseDto {
     @Email
     private String email;
     private String endereco;
-    @NotBlank
+    @NotNull
     private TipoBeneficiario tipoBeneficiario; 
-    @NotBlank
+    @NotNull
     private NivelPrioridade nivelPrioridade; 
 }   

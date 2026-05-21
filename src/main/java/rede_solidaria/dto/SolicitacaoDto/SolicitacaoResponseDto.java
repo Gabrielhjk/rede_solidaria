@@ -1,6 +1,7 @@
 package rede_solidaria.dto.SolicitacaoDto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,6 @@ public class SolicitacaoResponseDto {
     private Integer quantidadeSolicitada;
     @Size(max = 255)
     private String justificativa;
-    @NotBlank
+    @NotNull
     private StatusSolicitacao statusSolicitacao;    
 }

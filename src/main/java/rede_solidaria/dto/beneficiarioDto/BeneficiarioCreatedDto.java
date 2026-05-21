@@ -4,6 +4,7 @@ import rede_solidaria.database.model.enums.NivelPrioridade;
 import rede_solidaria.database.model.enums.TipoBeneficiario;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,8 +29,8 @@ public class BeneficiarioCreatedDto {
     @NotBlank
     private String senha;
     private String endereco;
-    @NotBlank
+    @NotNull
     private TipoBeneficiario tipoBeneficiario;
-    @NotBlank 
+    @NotNull 
     private NivelPrioridade nivelPrioridade; 
 }

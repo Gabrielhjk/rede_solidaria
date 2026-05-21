@@ -6,9 +6,9 @@ import java.util.Set;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Builder;
-// import lombok.AllArgsConstructor;
-// import lombok.NoArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,8 +16,8 @@ import lombok.experimental.SuperBuilder;
 
 @Getter 
 @Setter
-// @AllArgsConstructor
-// @NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString(callSuper = true)
 @SuperBuilder
 @Entity

@@ -3,6 +3,7 @@ package rede_solidaria.dto.itemDoacaoEfetivadaDto;
 import rede_solidaria.database.model.enums.StatusItem;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +30,6 @@ public class ItemDoacaoEfetivadaCreatedDto {
     private Integer quantidade;
     @NotBlank
     private String estadoDeConversao;
-    @NotBlank
+    @NotNull
     private StatusItem statusItem;
 }

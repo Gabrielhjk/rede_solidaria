@@ -11,5 +11,5 @@ spring:
       db: ${DATABASE_DB}
   jpa:
       hibernate:
-        ddl-auto: update
+        ddl-auto: create-drop
         show-sql: true
