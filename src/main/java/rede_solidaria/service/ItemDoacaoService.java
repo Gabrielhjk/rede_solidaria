@@ -5,6 +5,8 @@ import java.util.List;
 
 import rede_solidaria.database.model.ItemDoacaoEfetivada;
 import rede_solidaria.dto.itemDoacaoEfetivadaDto.ItemDoacaoEfetivadaCreatedDto;
+import rede_solidaria.handler.BusinessException;
+import rede_solidaria.database.repository.ItemDoacaoEfetivadaRepository;
 
 import org.springframework.stereotype.Service;
 
@@ -13,52 +15,48 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ItemDoacaoService {
-    private static final List<ItemDoacaoEfetivada> itensDoacao = new ArrayList<>();
+
+    private final ItemDoacaoEfetivadaRepository itemDoacaoEfetivadaRepository;
 
     public List<ItemDoacaoEfetivada> listarItensDoacao() {
-        return new ArrayList<>(itensDoacao);
+        return itemDoacaoEfetivadaRepository.findAll();
     }
 
-    public ItemDoacaoEfetivada cadastrarItemDoacao(ItemDoacaoEfetivadaCreatedDto itemDoacaoCreatedDto) {
-        
-        Integer id = itensDoacao.stream()
-            .mapToInt(ItemDoacaoEfetivada::getId)
-            .max()
-            .orElse(0) + 1;
-
+    public void cadastrarItemDoacao(ItemDoacaoEfetivadaCreatedDto itemDoacaoEfetivadaCreatedDto) {
         ItemDoacaoEfetivada novoItem = ItemDoacaoEfetivada.builder()
-            .id(id)
-            .nomeItem(itemDoacaoCreatedDto.getNomeItem())
-            .categoria(itemDoacaoCreatedDto.getCategoria())
-            .descricao(itemDoacaoCreatedDto.getDescricao())
-            .quantidade(itemDoacaoCreatedDto.getQuantidade())
-            .estadoDeConversao(itemDoacaoCreatedDto.getEstadoDeConversao())
-            .statusItem(itemDoacaoCreatedDto.getStatusItem())
-            // .dataDoacao(itemDoacaoCreatedDto.getDataDoacao())
+            .nomeItem(itemDoacaoEfetivadaCreatedDto.getNomeItem())
+            .categoria(itemDoacaoEfetivadaCreatedDto.getCategoria())
+            .descricao(itemDoacaoEfetivadaCreatedDto.getDescricao())
+            .quantidade(itemDoacaoEfetivadaCreatedDto.getQuantidade())
+            .estadoDeConversao(itemDoacaoEfetivadaCreatedDto.getEstadoDeConversao())
+            .statusItem(itemDoacaoEfetivadaCreatedDto.getStatusItem())
             .build();
 
-            itensDoacao.add(novoItem);
-            return novoItem;
+            itemDoacaoEfetivadaRepository.save(novoItem);
     }
 
-    public ItemDoacaoEfetivada atualizarDadosItem(Integer id, ItemDoacaoEfetivadaCreatedDto itemDoacaoCreatedDto) {
-        ItemDoacaoEfetivada itemId = itensDoacao.stream()
-            .filter(i -> i.getId().equals(id))
-            .findAny()
-            .orElseThrow(null);
+    // public ItemDoacaoEfetivada atualizarDadosItem(Integer id, ItemDoacaoEfetivadaCreatedDto itemDoacaoCreatedDto) {
+    //     ItemDoacaoEfetivada itemId = itensDoacao.stream()
+    //         .filter(i -> i.getId().equals(id))
+    //         .findAny()
+    //         .orElseThrow(null);
 
-        itemId.setNomeItem(itemDoacaoCreatedDto.getNomeItem());
-        itemId.setCategoria(itemDoacaoCreatedDto.getCategoria());
-        itemId.setDescricao(itemDoacaoCreatedDto.getDescricao());
-        itemId.setQuantidade(itemDoacaoCreatedDto.getQuantidade());
-        itemId.setEstadoDeConversao(itemDoacaoCreatedDto.getEstadoDeConversao());
-        itemId.setStatusItem(itemDoacaoCreatedDto.getStatusItem());
-        // itemId.setDataDoacao(itemDoacaoCreatedDto.getDataDoacao());
+    //     itemId.setNomeItem(itemDoacaoCreatedDto.getNomeItem());
+    //     itemId.setCategoria(itemDoacaoCreatedDto.getCategoria());
+    //     itemId.setDescricao(itemDoacaoCreatedDto.getDescricao());
+    //     itemId.setQuantidade(itemDoacaoCreatedDto.getQuantidade());
+    //     itemId.setEstadoDeConversao(itemDoacaoCreatedDto.getEstadoDeConversao());
+    //     itemId.setStatusItem(itemDoacaoCreatedDto.getStatusItem());
+    //     // itemId.setDataDoacao(itemDoacaoCreatedDto.getDataDoacao());
 
-        return itemId;
-    }
+    //     return itemId;
+    // }
 
     public void deletarItemDoacao(Integer id) {
-        itensDoacao.removeIf(i -> i.getId().equals(id));
+        if (!itemDoacaoEfetivadaRepository.existsById(id)) {
+            throw new BusinessException("Item não encontrado");
+        }
+
+        itemDoacaoEfetivadaRepository.deleteById(id);
     }
 }

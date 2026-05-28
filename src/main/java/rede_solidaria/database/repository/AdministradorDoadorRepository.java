@@ -5,4 +5,5 @@ import rede_solidaria.database.model.Doador;
 
 public interface AdministradorDoadorRepository extends JpaRepository<Doador, Integer>{
     boolean existsByEmail(String email);
+    boolean existsById(Integer id);
 }

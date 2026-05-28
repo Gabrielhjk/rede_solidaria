@@ -30,14 +30,15 @@ public class ItemDoacaoController {
     }
 
     @PostMapping
-    public ResponseEntity<ItemDoacaoEfetivada> cadastrarItemDoacao(@RequestBody ItemDoacaoEfetivadaCreatedDto itemDoacaoCreatedDto) {
-        return new ResponseEntity<>(itemDoacaoService.cadastrarItemDoacao(itemDoacaoCreatedDto), HttpStatus.CREATED);
+    public ResponseEntity<Void> cadastrarItemDoacao(@RequestBody ItemDoacaoEfetivadaCreatedDto itemDoacaoEfetivadaCreatedDto) {
+        itemDoacaoService.cadastrarItemDoacao(itemDoacaoEfetivadaCreatedDto);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ItemDoacaoEfetivada> atualizarDadosItem(@PathVariable Integer id, @RequestBody ItemDoacaoEfetivadaCreatedDto itemDoacaoCreatedDto) {
-        return new ResponseEntity<>(itemDoacaoService.atualizarDadosItem(id, itemDoacaoCreatedDto), HttpStatus.OK);
-    }
+    // @PutMapping("/{id}")
+    // public ResponseEntity<ItemDoacaoEfetivada> atualizarDadosItem(@PathVariable Integer id, @RequestBody ItemDoacaoEfetivadaCreatedDto itemDoacaoEfetivadaCreatedDto) {
+    //     return new ResponseEntity<>(itemDoacaoService.atualizarDadosItem(id, itemDoacaoEfetivadaCreatedDto), HttpStatus.OK);
+    // }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarItemDoacao(@PathVariable Integer id) {

@@ -53,6 +53,10 @@ public class AdministradorDoadorService {
 
 
     public void deletarDoador(Integer id) {
+        if (!administradorDoadorRepository.existsById(id)) {
+            throw new BusinessException("Doado não encontrado")
+        }
+
         administradorDoadorRepository.deleteById(id);
     }
 }
