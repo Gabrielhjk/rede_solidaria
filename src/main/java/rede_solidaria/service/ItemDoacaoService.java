@@ -32,6 +32,10 @@ public class ItemDoacaoService {
             .statusItem(itemDoacaoEfetivadaCreatedDto.getStatusItem())
             .build();
 
+            if (itemDoacaoEfetivadaCreatedDto.getQuantidade() <= 0) {
+                throw new BusinessException("Quantidade do item tem que ser maior do que 0");
+            }
+
             itemDoacaoEfetivadaRepository.save(novoItem);
     }
 
