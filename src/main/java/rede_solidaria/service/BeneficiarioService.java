@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import rede_solidaria.database.repository.BeneficiarioRepository;
-import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
 import rede_solidaria.dto.loginDto.LoginDto;
 import rede_solidaria.handler.BusinessException;
 
@@ -12,11 +11,11 @@ import rede_solidaria.handler.BusinessException;
 // + atualizarDadosBeneficiario()
 // + listarDoadores()
 // + listarItens()
-// + buscarItensDisponiveis()
-// + obterNivelPrioridade() 
+// + buscarItensDisponiveis() filtrar por status do item
+// + obterNivelPrioridade() filtar por prioridade
 // + solicitarItem() 
-// + listarSolicitacoes() 
-// + logar()
+// + listarSolicitacoes() filtrar por status de solicitacao
+// + logar() feito
 
 
 @Service

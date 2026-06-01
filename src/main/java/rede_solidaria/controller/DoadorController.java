@@ -2,8 +2,6 @@ package rede_solidaria.controller;
 
 import java.util.List;
 
-import javax.print.DocFlavor.STRING;
-
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

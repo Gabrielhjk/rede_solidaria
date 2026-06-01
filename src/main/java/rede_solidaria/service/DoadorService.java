@@ -16,6 +16,18 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
+// + cadastrarItem() feito
+// + atualizarDadosItem()  
+// + removerItem() feito
+// + listarItems() feito
+// + buscarItem()  
+// + doarItem()
+// + atualizarStatus() 
+// + verificarDisponibilidade() filtrar por status do item
+// + atualizarEstoque()
+// + logar() feito
+
+
 @Service
 @RequiredArgsConstructor
 public class DoadorService {
@@ -54,7 +66,6 @@ public class DoadorService {
     }
 
     public void cadastrarItemDoacao(ItemDoacaoCreatedDto itemDoacaoCreatedDto) {
-
         Doador doador = administradorDoadorRepository.findById(itemDoacaoCreatedDto.getDoadorId())
         .orElseThrow(() -> new BusinessException("Doador não encontrado"));
 
