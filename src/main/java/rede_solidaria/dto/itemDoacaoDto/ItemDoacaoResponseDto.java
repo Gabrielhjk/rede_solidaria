@@ -1,4 +1,4 @@
-package rede_solidaria.dto.itemDoacaoEfetivadaDto;
+package rede_solidaria.dto.itemDoacaoDto;
 
 import java.time.LocalDateTime;
 
@@ -19,7 +19,7 @@ import rede_solidaria.database.model.enums.StatusItem;
 @NoArgsConstructor
 @ToString
 @Builder
-public class ItemDoacaoEfetivadaResponseDto {
+public class ItemDoacaoResponseDto {
     private Integer id;
     @NotBlank
     private String nomeItem;

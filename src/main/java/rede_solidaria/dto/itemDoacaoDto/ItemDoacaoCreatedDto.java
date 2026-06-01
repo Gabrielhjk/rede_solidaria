@@ -1,4 +1,4 @@
-package rede_solidaria.dto.itemDoacaoEfetivadaDto;
+package rede_solidaria.dto.itemDoacaoDto;
 
 import rede_solidaria.database.model.enums.StatusItem;
 
@@ -18,7 +18,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-public class ItemDoacaoEfetivadaCreatedDto {
+public class ItemDoacaoCreatedDto {
     @NotBlank(message = "O nome do item é obrigatório")
     private String nomeItem;
     @NotBlank(message = "A categoria é obrigatória")
