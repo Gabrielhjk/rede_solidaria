@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import rede_solidaria.service.ItemDoacaoService;
 import rede_solidaria.database.model.ItemDoacaoEfetivada;
 import rede_solidaria.dto.itemDoacaoEfetivadaDto.ItemDoacaoEfetivadaCreatedDto;
+import rede_solidaria.dto.itemDoacaoEfetivadaDto.ItemDoacaoEfetivadaResponseDto;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -25,7 +26,7 @@ public class ItemDoacaoController {
     private final ItemDoacaoService itemDoacaoService;
 
     @GetMapping("/listar")
-    public ResponseEntity<List<ItemDoacaoEfetivada>> listarItensDoacao() {
+    public ResponseEntity<List<ItemDoacaoEfetivadaResponseDto>> listarItensDoacao() {
         return new ResponseEntity<>(itemDoacaoService.listarItensDoacao(), HttpStatus.OK);
     }
 

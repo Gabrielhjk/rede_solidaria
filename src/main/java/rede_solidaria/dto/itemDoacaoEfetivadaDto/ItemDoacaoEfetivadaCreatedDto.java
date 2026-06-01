@@ -32,4 +32,6 @@ public class ItemDoacaoEfetivadaCreatedDto {
     private String estadoDeConversao;
     @NotNull(message = "O status do item é obrigatório")
     private StatusItem statusItem;
+    @NotNull(message = "É obrigatório informar o doador")
+    private Integer DoadorId;
 }

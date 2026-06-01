@@ -3,9 +3,13 @@ package rede_solidaria.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import rede_solidaria.database.model.Doador;
 import rede_solidaria.database.model.ItemDoacaoEfetivada;
+import rede_solidaria.dto.beneficiarioDto.BeneficiarioResponseDto;
 import rede_solidaria.dto.itemDoacaoEfetivadaDto.ItemDoacaoEfetivadaCreatedDto;
+import rede_solidaria.dto.itemDoacaoEfetivadaDto.ItemDoacaoEfetivadaResponseDto;
 import rede_solidaria.handler.BusinessException;
+import rede_solidaria.database.repository.AdministradorDoadorRepository;
 import rede_solidaria.database.repository.ItemDoacaoEfetivadaRepository;
 
 import org.springframework.stereotype.Service;
@@ -17,12 +21,36 @@ import lombok.RequiredArgsConstructor;
 public class ItemDoacaoService {
 
     private final ItemDoacaoEfetivadaRepository itemDoacaoEfetivadaRepository;
+    private final AdministradorDoadorRepository administradorDoadorRepository;
 
-    public List<ItemDoacaoEfetivada> listarItensDoacao() {
-        return itemDoacaoEfetivadaRepository.findAll();
+
+    // conversao do model para Dto
+    private ItemDoacaoEfetivadaResponseDto converterParaDto(ItemDoacaoEfetivada itemDoacaoEfetivada) {
+            return ItemDoacaoEfetivadaResponseDto.builder()
+                .id(itemDoacaoEfetivada.getId())
+                .nomeItem(itemDoacaoEfetivada.getNomeItem())
+                .categoria(itemDoacaoEfetivada.getCategoria())
+                .descricao(itemDoacaoEfetivada.getDescricao())
+                .quantidade(itemDoacaoEfetivada.getQuantidade())
+                .estadoDeConversao(itemDoacaoEfetivada.getEstadoDeConversao())
+                .statusItem(itemDoacaoEfetivada.getStatusItem())
+                .dataDoacao(itemDoacaoEfetivada.getDataDoacao())
+                .doadorId(itemDoacaoEfetivada.getDoador().getId())
+                .build();
+        };
+
+    public List<ItemDoacaoEfetivadaResponseDto> listarItensDoacao() {
+        return itemDoacaoEfetivadaRepository.findAll()
+                                            .stream()
+                                            .map(this::converterParaDto)
+                                            .toList();
     }
 
     public void cadastrarItemDoacao(ItemDoacaoEfetivadaCreatedDto itemDoacaoEfetivadaCreatedDto) {
+
+        Doador doador = administradorDoadorRepository.findById(itemDoacaoEfetivadaCreatedDto.getDoadorId())
+        .orElseThrow(() -> new BusinessException("Doador não encontrado"));
+
         ItemDoacaoEfetivada novoItem = ItemDoacaoEfetivada.builder()
             .nomeItem(itemDoacaoEfetivadaCreatedDto.getNomeItem())
             .categoria(itemDoacaoEfetivadaCreatedDto.getCategoria())
@@ -30,6 +58,7 @@ public class ItemDoacaoService {
             .quantidade(itemDoacaoEfetivadaCreatedDto.getQuantidade())
             .estadoDeConversao(itemDoacaoEfetivadaCreatedDto.getEstadoDeConversao())
             .statusItem(itemDoacaoEfetivadaCreatedDto.getStatusItem())
+            .doador(doador)
             .build();
 
             if (itemDoacaoEfetivadaCreatedDto.getQuantidade() <= 0) {

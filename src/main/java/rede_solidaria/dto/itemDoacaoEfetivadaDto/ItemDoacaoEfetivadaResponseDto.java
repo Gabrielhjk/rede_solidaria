@@ -28,11 +28,13 @@ public class ItemDoacaoEfetivadaResponseDto {
     @NotBlank
     @Size(max = 255)
     private String descricao;
-    @NotBlank
+    @NotNull
     private Integer quantidade;
     @NotBlank
     private String estadoDeConversao;
     @NotNull
     private StatusItem statusItem;
-    private LocalDateTime dataDoacao;   
+    @NotNull   
+    private Integer doadorId;
+    private LocalDateTime dataDoacao;
 }
