@@ -17,6 +17,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import rede_solidaria.database.model.Doador;
 import rede_solidaria.dto.doadorDto.DoadorCreatedDto;
+import rede_solidaria.dto.doadorDto.DoadorResponseDto;
 import rede_solidaria.service.AdministradorDoadorService;
 
 @RestController
@@ -27,7 +28,7 @@ public class DoadorController {
     private final AdministradorDoadorService administradorDoadorService;
 
     @GetMapping("/doadores")
-    public ResponseEntity<List<Doador>> listarDoadores() {
+    public ResponseEntity<List<DoadorResponseDto>> listarDoadores() {
         return new ResponseEntity<>(administradorDoadorService.listarDoadores(), HttpStatus.OK);
     }
 

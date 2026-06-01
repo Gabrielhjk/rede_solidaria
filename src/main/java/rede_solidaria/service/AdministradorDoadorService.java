@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import rede_solidaria.database.model.Doador;
 import rede_solidaria.database.repository.AdministradorDoadorRepository;
 import rede_solidaria.dto.doadorDto.DoadorCreatedDto;
+import rede_solidaria.dto.doadorDto.DoadorResponseDto;
 import rede_solidaria.handler.BusinessException;
 
 @Service
@@ -15,8 +16,21 @@ import rede_solidaria.handler.BusinessException;
 public class AdministradorDoadorService {
     private final AdministradorDoadorRepository administradorDoadorRepository;
 
-    public List<Doador> listarDoadores() {
-        return administradorDoadorRepository.findAll();
+    private DoadorResponseDto converterParaDto(Doador doador) {
+        return DoadorResponseDto.builder()
+            .id(doador.getId())
+            .nome(doador.getNome())
+            .telefone(doador.getTelefone())
+            .email(doador.getEmail())
+            .endereco(doador.getEndereco())
+            .build();
+    }
+
+    public List<DoadorResponseDto> listarDoadores() {
+        return administradorDoadorRepository.findAll()
+                                            .stream()
+                                            .map(this::converterParaDto)
+                                            .toList();
     }
 
     public void cadastrarDoador(DoadorCreatedDto doadorCreatedDto) {

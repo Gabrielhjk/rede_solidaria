@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import rede_solidaria.database.model.Beneficiario;
 import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
+import rede_solidaria.dto.beneficiarioDto.BeneficiarioResponseDto;
 import rede_solidaria.handler.BusinessException;
 import rede_solidaria.database.repository.AdministradorBeneficiarioRepository;
 
@@ -15,8 +16,23 @@ import rede_solidaria.database.repository.AdministradorBeneficiarioRepository;
 public class AdministradorBeneficiarioService {
     private final AdministradorBeneficiarioRepository administradorBeneficiarioRepository;
 
-    public List<Beneficiario> listarBeneficiarios() {
-        return administradorBeneficiarioRepository.findAll();
+    private BeneficiarioResponseDto converterParaDto(Beneficiario beneficiario) {
+        return BeneficiarioResponseDto.builder()
+            .id(beneficiario.getId())
+            .nome(beneficiario.getNome())
+            .telefone(beneficiario.getTelefone())
+            .email(beneficiario.getEmail())
+            .endereco(beneficiario.getEndereco())
+            .tipoBeneficiario(beneficiario.getTipoBeneficiario())
+            .nivelPrioridade(beneficiario.getNivelPrioridade())
+            .build();
+    }
+
+    public List<BeneficiarioResponseDto> listarBeneficiarios() {
+        return administradorBeneficiarioRepository.findAll()
+                                                  .stream()
+                                                  .map(this::converterParaDto)
+                                                  .toList();
     }
 
  public void cadastrarBeneficiario(BeneficiarioCreatedDto beneficiarioCreatedDto) {

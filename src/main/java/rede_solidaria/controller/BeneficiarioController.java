@@ -17,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import rede_solidaria.service.AdministradorBeneficiarioService;
 import rede_solidaria.database.model.Beneficiario;
 import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
+import rede_solidaria.dto.beneficiarioDto.BeneficiarioResponseDto;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class BeneficiarioController {
     private final AdministradorBeneficiarioService administradorBeneficiarioService;
     
     @GetMapping("/beneficiarios")
-    public ResponseEntity<List<Beneficiario>> listarBeneficiarios() {
+    public ResponseEntity<List<BeneficiarioResponseDto>> listarBeneficiarios() {
         return new ResponseEntity<>(administradorBeneficiarioService.listarBeneficiarios(), HttpStatus.OK);
     }
 
