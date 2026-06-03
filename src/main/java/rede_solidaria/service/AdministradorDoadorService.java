@@ -16,7 +16,7 @@ import rede_solidaria.handler.BusinessException;
 public class AdministradorDoadorService {
     private final AdministradorDoadorRepository administradorDoadorRepository;
 
-    private DoadorResponseDto converterParaDto(Doador doador) {
+    public DoadorResponseDto converterParaDto(Doador doador) {
         return DoadorResponseDto.builder()
             .id(doador.getId())
             .nome(doador.getNome())

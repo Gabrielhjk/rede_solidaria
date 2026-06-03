@@ -16,6 +16,7 @@ import rede_solidaria.database.repository.AdministradorBeneficiarioRepository;
 public class AdministradorBeneficiarioService {
     private final AdministradorBeneficiarioRepository administradorBeneficiarioRepository;
 
+    // conversao do model para Dto
     private BeneficiarioResponseDto converterParaDto(Beneficiario beneficiario) {
         return BeneficiarioResponseDto.builder()
             .id(beneficiario.getId())

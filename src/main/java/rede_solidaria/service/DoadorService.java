@@ -60,9 +60,9 @@ public class DoadorService {
 
     public List<ItemDoacaoResponseDto> listarItensDoacao() {
         return itemDoacaoRepository.findAll()
-                                            .stream()
-                                            .map(this::converterParaDto)
-                                            .toList();
+                                   .stream()
+                                   .map(this::converterParaDto)
+                                   .toList();
     }
 
     public void cadastrarItemDoacao(ItemDoacaoCreatedDto itemDoacaoCreatedDto) {
