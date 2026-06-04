@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import rede_solidaria.database.model.Beneficiario;
+import rede_solidaria.database.model.enums.NivelPrioridade;
 import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
 import rede_solidaria.dto.beneficiarioDto.BeneficiarioResponseDto;
 import rede_solidaria.handler.BusinessException;
@@ -36,7 +37,7 @@ public class AdministradorBeneficiarioService {
                                                   .toList();
     }
 
- public void cadastrarBeneficiario(BeneficiarioCreatedDto beneficiarioCreatedDto) {
+    public void cadastrarBeneficiario(BeneficiarioCreatedDto beneficiarioCreatedDto) {
 
         if (administradorBeneficiarioRepository.existsByEmail(beneficiarioCreatedDto.getEmail())) {
             throw new BusinessException("Beneficiário já cadastrado com este email.");
@@ -76,5 +77,12 @@ public class AdministradorBeneficiarioService {
 
     public void deletarBeneficiario(Integer id) {
         administradorBeneficiarioRepository.deleteById(id);;
+    }
+
+    public List<BeneficiarioResponseDto> buscarItensPorNivelPrioridade (NivelPrioridade nivelPrioridade) {
+        return administradorBeneficiarioRepository.findByNivelPrioridade(nivelPrioridade)
+                                     .stream()
+                                     .map(this::converterParaDto)
+                                     .toList(); 
     }
 }

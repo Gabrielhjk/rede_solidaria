@@ -11,5 +11,5 @@ spring:
       db: ${DATABASE_DB}
   jpa:
       hibernate:
-        ddl-auto: create-drop
+        ddl-auto: update
         

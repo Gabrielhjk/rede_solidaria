@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 
 import rede_solidaria.service.AdministradorBeneficiarioService;
+import rede_solidaria.database.model.enums.NivelPrioridade;
 import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
 import rede_solidaria.dto.beneficiarioDto.BeneficiarioResponseDto;
 
@@ -44,6 +46,11 @@ public class AdminstradorBeneficiarioController {
     public ResponseEntity<String> deletarBeneficiario(@PathVariable Integer id) {
         administradorBeneficiarioService.deletarBeneficiario(id);
         return new ResponseEntity<>("Beneficiário deletado com sucesso", HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/beneficiarios/nivelPrioridade")
+    public ResponseEntity<List<BeneficiarioResponseDto>> buscarBeneficiarioPorNivelPrioridade(@RequestParam("nivelPrioridade") NivelPrioridade nivelPrioridade) {
+        return new ResponseEntity<>(administradorBeneficiarioService.buscarItensPorNivelPrioridade(nivelPrioridade), HttpStatus.OK);
     }
 }
 

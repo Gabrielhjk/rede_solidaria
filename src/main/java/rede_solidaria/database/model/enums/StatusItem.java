@@ -1,19 +1,19 @@
 package rede_solidaria.database.model.enums;
 
 public enum StatusItem {
-    DISPONIVEL("Disponível"),
-    INDISPONIVEL("Indisponível"),
-    RESERVADO("Reservado"),
-    ENVIADO0("Enviado"),
-    RECEBIDO("Recebido");
+    DISPONIVEL,
+    INDISPONIVEL,
+    RESERVADO,
+    ENVIADO,
+    RECEBIDO;
 
-    private String status;
+    // private String status;
 
-    StatusItem(String status) {
-        this.status = status;
-    }
+    // StatusItem(String status) {
+    //     this.status = status;
+    // }
 
-    public String getStatus() {
-        return status;
-    }
+    // public String getStatus() {
+    //     return status;
+    // }
 }
