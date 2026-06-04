@@ -43,7 +43,7 @@ src/
 
 ## 📦 Funcionalidades
 
-### Funcionalidades do Administrador (Admin)
+### Funcionalidades do Administrador
 
 #### Beneficiários
 - Listar todos os beneficiários
