@@ -20,19 +20,8 @@ import rede_solidaria.handler.BusinessException;
 import rede_solidaria.dto.SolicitacaoDto.SolicitacaoCreatedDto;
 import rede_solidaria.dto.SolicitacaoDto.SolicitacaoResponseDto;
 import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
-import rede_solidaria.dto.doadorDto.DoadorCreatedDto;
 import rede_solidaria.dto.doadorDto.DoadorResponseDto;
 import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoResponseDto;
-
-// services para beneficiarios
-// + atualizarDadosBeneficiario()
-// + listarDoadores() - feito
-// + listarItens() - feito
-// + buscarItensDisponiveis() filtrar por status do item - feito
-// + solicitarItem() - feito
-// + listarSolicitacoes() - feito
-// + logar() - feito
-
 
 @Service
 @RequiredArgsConstructor

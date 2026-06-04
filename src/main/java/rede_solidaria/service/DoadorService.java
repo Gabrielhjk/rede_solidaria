@@ -14,20 +14,9 @@ import rede_solidaria.database.repository.AdministradorDoadorRepository;
 import rede_solidaria.database.repository.DoadorRepository;
 import rede_solidaria.database.repository.ItemDoacaoRepository;
 
-import org.springframework.boot.info.BuildProperties;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-
-// + cadastrarItem() feito
-// + atualizarDadosItem()  
-// + removerItem() feito
-// + listarItems() feito
-// + buscarItem() buscar por id do item - feito
-// + atualizarStatus() - feito
-// + atualizarEstoque()
-// + logar() feito
-
 
 @Service
 @RequiredArgsConstructor
