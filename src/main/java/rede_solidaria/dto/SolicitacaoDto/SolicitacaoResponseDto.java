@@ -26,7 +26,7 @@ public class SolicitacaoResponseDto {
     @NotNull
     private StatusSolicitacao statusSolicitacao;    
     @NotBlank
-    private String beneficiario;
+    private Integer beneficiario;
     @NotBlank
-    private String itemDoacao;
+    private Integer itemDoacao;
 }

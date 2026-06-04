@@ -20,8 +20,8 @@ public class SolicitacaoService {
             .id(solicitacao.getId())
             .quantidadeSolicitada(solicitacao.getQuantidadeSolicitada())
             .justificativa(solicitacao.getJustificativa())
-            .beneficiario(solicitacao.getBeneficiario().getNome())
-            .itemDoacao(solicitacao.getItemDoacao().getNomeItem())
+            .beneficiario(solicitacao.getBeneficiario().getId())
+            .itemDoacao(solicitacao.getItemDoacao().getId())
             .statusSolicitacao(solicitacao.getStatusSolicitacao())
             .build();
     }

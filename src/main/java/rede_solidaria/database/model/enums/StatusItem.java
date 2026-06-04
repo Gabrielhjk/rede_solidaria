@@ -6,14 +6,4 @@ public enum StatusItem {
     RESERVADO,
     ENVIADO,
     RECEBIDO;
-
-    // private String status;
-
-    // StatusItem(String status) {
-    //     this.status = status;
-    // }
-
-    // public String getStatus() {
-    //     return status;
-    // }
 }

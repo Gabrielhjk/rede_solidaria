@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 import rede_solidaria.database.model.enums.StatusItem;
+import rede_solidaria.dto.SolicitacaoDto.SolicitacaoCreatedDto;
 import rede_solidaria.dto.SolicitacaoDto.SolicitacaoResponseDto;
 import rede_solidaria.dto.doadorDto.DoadorResponseDto;
 import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoResponseDto;
@@ -44,6 +45,12 @@ public class BeneficiarioController {
     @GetMapping("/itens/status")
     public ResponseEntity<List<ItemDoacaoResponseDto>> buscarItensPorStatus(@RequestParam("status") StatusItem statusItem) {
         return new ResponseEntity<>(beneficiarioService.buscarItensPorStatus(statusItem), HttpStatus.OK);
+    }
+
+    @PostMapping("/solicitacoes/solicitar")
+    public ResponseEntity<Void> solicitarItem(@RequestBody SolicitacaoCreatedDto solicitacaoCreatedDto) {
+        beneficiarioService.solicitarItem(solicitacaoCreatedDto);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/solicitacoes/listar")

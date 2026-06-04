@@ -5,5 +5,6 @@ import rede_solidaria.database.model.Beneficiario;
 
 public interface BeneficiarioRepository extends JpaRepository<Beneficiario, Integer> {
     boolean existsByEmailAndSenha(String email, String senha);
+    boolean existsById(Integer id);
 }
     

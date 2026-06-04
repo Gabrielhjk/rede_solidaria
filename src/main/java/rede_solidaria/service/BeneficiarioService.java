@@ -5,13 +5,17 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import rede_solidaria.database.model.Beneficiario;
 import rede_solidaria.database.model.ItemDoacao;
+import rede_solidaria.database.model.Solicitacao;
 import rede_solidaria.database.model.enums.StatusItem;
+import rede_solidaria.database.model.enums.StatusSolicitacao;
 import rede_solidaria.database.repository.BeneficiarioRepository;
 import rede_solidaria.database.repository.ItemDoacaoRepository;
 import rede_solidaria.database.repository.SolicitacaoRepository;
 import rede_solidaria.dto.loginDto.LoginDto;
 import rede_solidaria.handler.BusinessException;
+import rede_solidaria.dto.SolicitacaoDto.SolicitacaoCreatedDto;
 import rede_solidaria.dto.SolicitacaoDto.SolicitacaoResponseDto;
 import rede_solidaria.dto.doadorDto.DoadorResponseDto;
 import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoResponseDto;
@@ -22,7 +26,7 @@ import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoResponseDto;
 // + listarItens() - feito
 // + buscarItensDisponiveis() filtrar por status do item - feito
 // + obterNivelPrioridade() filtar por prioridade - feito
-// + solicitarItem() 
+// + solicitarItem() - feito
 // + listarSolicitacoes() - feito
 // + logar() - feito
 
@@ -79,5 +83,28 @@ public class BeneficiarioService {
                                     .stream()
                                     .map(solicitacaoService::converterParaDto)
                                     .toList();
+    }
+
+    public void solicitarItem (SolicitacaoCreatedDto solicitacaoCreatedDto) {
+        Beneficiario beneficiario = beneficiarioRepository.findById(solicitacaoCreatedDto.getBeneficiarioId())
+            .orElseThrow(() -> new BusinessException("Beneficiario não existe"));
+            
+
+        ItemDoacao itemDoacao = itemDoacaoRepository.findById(solicitacaoCreatedDto.getItemDoacaoId())
+            .orElseThrow(() -> new BusinessException("Item não existe"));
+        
+        if (solicitacaoCreatedDto.getQuantidadeSolicitada() < 1) {
+            throw new BusinessException("Quantidade Inválida");
+        }
+
+        Solicitacao solicitacao = Solicitacao.builder()
+            .quantidadeSolicitada(solicitacaoCreatedDto.getQuantidadeSolicitada())
+            .justificativa(solicitacaoCreatedDto.getJustificativa())
+            .statusSolicitacao(StatusSolicitacao.EM_ANDAMENTO)
+            .beneficiario(beneficiario)
+            .itemDoacao(itemDoacao)
+            .build();
+
+        solicitacaoRepository.save(solicitacao);
     }
 }
