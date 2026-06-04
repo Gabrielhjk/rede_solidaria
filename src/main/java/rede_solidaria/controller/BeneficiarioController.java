@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,10 +40,22 @@ public class BeneficiarioController {
         return new ResponseEntity<>(beneficiarioService.listarDoadores(), HttpStatus.OK);
     }
 
+    // enpoint para listar um doador
+    @GetMapping("/doadores/{id}")
+    public ResponseEntity<DoadorResponseDto> listarDoador(Integer id) {
+        return new ResponseEntity<>(beneficiarioService.listarDoador(id), HttpStatus.OK);
+    }
+
     // endpoint para listar todos os itens para doacao
     @GetMapping("/itens/listar")
     public ResponseEntity<List<ItemDoacaoResponseDto>> listarItens() {
-        return new ResponseEntity<>(beneficiarioService.listarItens(), HttpStatus.OK);
+        return new ResponseEntity<>(beneficiarioService.listarItensDoacao(), HttpStatus.OK);
+    }
+
+    // endpoint para listar um item
+    @GetMapping("/itens/{id}")
+    public ResponseEntity<ItemDoacaoResponseDto> listarItem(@PathVariable Integer id) {
+        return new ResponseEntity<>(beneficiarioService.listarItem(id), HttpStatus.OK);
     }
 
     // endpoint para filtar item por status

@@ -86,7 +86,7 @@ public class DoadorService {
             .doador(doador)
             .build();
 
-            if (itemDoacaoCreatedDto.getQuantidade() <= 0) {
+            if (itemDoacaoCreatedDto.getQuantidade() < 0) {
                 throw new BusinessException("Quantidade do item tem que ser maior do que 0");
             }
 

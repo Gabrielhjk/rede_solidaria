@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import rede_solidaria.database.model.Beneficiario;
+import rede_solidaria.database.model.Doador;
 import rede_solidaria.database.model.ItemDoacao;
 import rede_solidaria.database.model.Solicitacao;
 import rede_solidaria.database.model.enums.StatusItem;
 import rede_solidaria.database.model.enums.StatusSolicitacao;
 import rede_solidaria.database.repository.BeneficiarioRepository;
+import rede_solidaria.database.repository.DoadorRepository;
 import rede_solidaria.database.repository.ItemDoacaoRepository;
 import rede_solidaria.database.repository.SolicitacaoRepository;
 import rede_solidaria.dto.loginDto.LoginDto;
@@ -35,10 +37,11 @@ import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoResponseDto;
 public class BeneficiarioService {
     private final AdministradorDoadorService administradorDoadorService;
     private final DoadorService doadorService;
+    private final SolicitacaoService solicitacaoService;
     private final BeneficiarioRepository beneficiarioRepository;
     private final ItemDoacaoRepository itemDoacaoRepository;
     private final SolicitacaoRepository solicitacaoRepository;
-    private final SolicitacaoService solicitacaoService;
+    private final DoadorRepository doadorRepository;
 
     // conversao do model para Dto
     private ItemDoacaoResponseDto converterParaDto(ItemDoacao itemDoacao) {
@@ -66,8 +69,19 @@ public class BeneficiarioService {
         return administradorDoadorService.listarDoadores();
     }
 
-    public List<ItemDoacaoResponseDto> listarItens() {
+    public DoadorResponseDto listarDoador(Integer id) {
+        Doador doador = doadorRepository.findById(id)
+            .orElseThrow(() -> new BusinessException("Doador não encontarado"));
+
+        return administradorDoadorService.converterParaDto(doador);
+    }
+
+    public List<ItemDoacaoResponseDto> listarItensDoacao() {
         return doadorService.listarItensDoacao();
+    }
+
+    public ItemDoacaoResponseDto listarItem(Integer id) {
+        return doadorService.listarItem(id);
     }
 
     public List<ItemDoacaoResponseDto> buscarItensPorStatus (StatusItem statusItem) {
@@ -109,6 +123,7 @@ public class BeneficiarioService {
             .itemDoacao(itemDoacao)
             .build();
 
+        // salva no banco 
         solicitacaoRepository.save(solicitacao);
     }
 }

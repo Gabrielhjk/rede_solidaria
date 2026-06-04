@@ -73,7 +73,7 @@ public class AdministradorDoadorService {
     public void deletarDoador(Integer id) {
         // valida se o id do doador existe
         if (!administradorDoadorRepository.existsById(id)) {
-            throw new BusinessException("Doado não encontrado");
+            throw new BusinessException("Doador não encontrado");
         }
         
         // deleta doador no banco

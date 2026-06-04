@@ -11,7 +11,6 @@ import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
 import rede_solidaria.dto.beneficiarioDto.BeneficiarioResponseDto;
 import rede_solidaria.handler.BusinessException;
 import rede_solidaria.database.repository.AdministradorBeneficiarioRepository;
-import rede_solidaria.database.repository.BeneficiarioRepository;
 
 // + obterNivelPrioridade() filtar por prioridade - feito
 
