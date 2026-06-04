@@ -133,6 +133,8 @@ cd rede_solidaria
 
 ### 3. Configure o banco de dados
 ```
+acesse a pasta: src/main/resources/application.properties
+
 spring.datasource.url=jdbc:mysql://localhost:3306/rede_solidaria
 spring.datasource.username=root
 spring.datasource.password=senha
@@ -177,7 +179,7 @@ Entre com os dados que estão no .ENV
 
 ## 📌 Observações
 
-Este projeto foi sendo desenvolvido para fins de estudos em:
+Este projeto foi desenvolvido para fins de estudos em:
 
 Desenvolvimento Backend
 
@@ -191,4 +193,4 @@ SpringBoot
 
 ---
 
-## ESSE REAME FOI GERADO COM AUXÍLIO DE INTELIGÊNCIA ARTIFICIAL (CHATGPT)
+### ESSE REAME FOI GERADO COM AUXÍLIO DE INTELIGÊNCIA ARTIFICIAL (CHATGPT)
