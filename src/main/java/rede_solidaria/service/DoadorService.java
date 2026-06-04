@@ -21,7 +21,6 @@ import lombok.RequiredArgsConstructor;
 // + removerItem() feito
 // + listarItems() feito
 // + buscarItem() buscar por id do item 
-// + doarItem()
 // + atualizarStatus() 
 // + atualizarEstoque()
 // + logar() feito
@@ -62,6 +61,13 @@ public class DoadorService {
                                    .stream()
                                    .map(this::converterParaDto)
                                    .toList();
+    }
+
+    public ItemDoacaoResponseDto listarItem(Integer id) {
+        ItemDoacao item = itemDoacaoRepository.findById(id)
+        .orElseThrow(() -> new BusinessException("Item não encontrado"));
+
+        return converterParaDto(item);
     }
 
     public void cadastrarItemDoacao(ItemDoacaoCreatedDto itemDoacaoCreatedDto) {

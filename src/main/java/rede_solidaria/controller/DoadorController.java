@@ -32,12 +32,17 @@ public class DoadorController {
         return new ResponseEntity<>("Login realizado com sucesso", HttpStatus.OK);
     }
 
-    @GetMapping("itens/listar")
+    @GetMapping("/itens/listar")
     public ResponseEntity<List<ItemDoacaoResponseDto>> listarItensDoacao() {
         return new ResponseEntity<>(itemDoacaoService.listarItensDoacao(), HttpStatus.OK);
     }
 
-    @PostMapping("itens/cadastrar")
+    @GetMapping("/itens/{id}")
+    public ResponseEntity<ItemDoacaoResponseDto> listarItem(@PathVariable Integer id) {
+        return new ResponseEntity<>(doadorService.listarItem(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/itens/cadastrar")
     public ResponseEntity<String> cadastrarItemDoacao(@RequestBody ItemDoacaoCreatedDto itemDoacaoEfetivadaCreatedDto) {
         itemDoacaoService.cadastrarItemDoacao(itemDoacaoEfetivadaCreatedDto);
         return new ResponseEntity<>("Item cadastrado com sucesso", HttpStatus.CREATED);
@@ -48,7 +53,7 @@ public class DoadorController {
     //     return new ResponseEntity<>(itemDoacaoService.atualizarDadosItem(id, itemDoacaoEfetivadaCreatedDto), HttpStatus.OK);
     // }
 
-    @DeleteMapping("itens/{id}")
+    @DeleteMapping("/itens/{id}")
     public ResponseEntity<String> deletarItemDoacao(@PathVariable Integer id) {
         itemDoacaoService.deletarItemDoacao(id);
         return new ResponseEntity<>("Item deletado com sucesso", HttpStatus.NO_CONTENT);
