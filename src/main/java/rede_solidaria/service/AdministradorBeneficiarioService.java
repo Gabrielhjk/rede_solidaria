@@ -60,24 +60,6 @@ public class AdministradorBeneficiarioService {
 
     }
 
-    // ver se vou permitir que o admin possa atualizar os dados do beneficiario, ou se ele so pode cadastrar, listar e deletar
-    // public Beneficiario atualizarDadosBeneficiario(Integer id, BeneficiarioDto beneficiarioDto) {
-    //     Beneficiario beneficiarioId = beneficiarios.stream()
-    //         .filter(b -> b.getId().equals(id))
-    //         .findAny()
-    //         .orElseThrow(null);
-
-    //         beneficiarioId.setNome(beneficiarioDto.getNome());
-    //         beneficiarioId.setTelefone(beneficiarioDto.getTelefone());
-    //         beneficiarioId.setEmail(beneficiarioDto.getEmail());
-    //         beneficiarioId.setSenha(beneficiarioDto.getSenha());
-    //         beneficiarioId.setEndereco(beneficiarioDto.getEndereco());
-    //         beneficiarioId.setTipoBeneficiario(beneficiarioDto.getTipoBeneficiario());
-    //         beneficiarioId.setNivelPrioridade(beneficiarioDto.getNivelPrioridade());
-
-    //         return beneficiarioId;
-    // }
-
     public void deletarBeneficiario(Integer id) {
         // valida se o id do beneficiario existe
         if (!administradorBeneficiarioRepository.existsById(id)) {
