@@ -5,6 +5,7 @@ import java.util.List;
 import rede_solidaria.database.model.Doador;
 import rede_solidaria.database.model.ItemDoacao;
 import rede_solidaria.database.model.enums.StatusItem;
+import rede_solidaria.dto.doadorDto.DoadorCreatedDto;
 import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoCreatedDto;
 import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoResponseDto;
 import rede_solidaria.dto.loginDto.LoginDto;
@@ -13,6 +14,7 @@ import rede_solidaria.database.repository.AdministradorDoadorRepository;
 import rede_solidaria.database.repository.DoadorRepository;
 import rede_solidaria.database.repository.ItemDoacaoRepository;
 
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -35,7 +37,7 @@ public class DoadorService {
     private final ItemDoacaoRepository itemDoacaoRepository;
     private final AdministradorDoadorRepository administradorDoadorRepository;
 
-    // realiza o login do doador
+    // valida e realiza o login do doador
     public void logar(LoginDto loginDto) {
         if (!doadorRepository.existsByEmailAndSenha(loginDto.getEmail(), loginDto.getSenha())) {
             throw new BusinessException("Email ou senha inválidos ou não existe");
@@ -93,22 +95,35 @@ public class DoadorService {
             itemDoacaoRepository.save(novoItem);
     }
 
-    // public ItemDoacaoEfetivada atualizarDadosItem(Integer id, ItemDoacaoEfetivadaCreatedDto itemDoacaoCreatedDto) {
-    //     ItemDoacaoEfetivada itemId = itensDoacao.stream()
-    //         .filter(i -> i.getId().equals(id))
-    //         .findAny()
-    //         .orElseThrow(null);
+    public void atualizarDadosDoador (Integer id, DoadorCreatedDto doadorCreatedDto) {
+        Doador doador = doadorRepository.findById(id)
+            .orElseThrow(() -> new BusinessException("Doador não encontrado")); 
+    
+        doador.setNome(doadorCreatedDto.getNome());
+        doador.setTelefone(doadorCreatedDto.getTelefone());
+        doador.setEmail(doadorCreatedDto.getEmail());
+        doador.setSenha(doadorCreatedDto.getSenha());
+        doador.setEndereco(doadorCreatedDto.getEndereco());
 
-    //     itemId.setNomeItem(itemDoacaoCreatedDto.getNomeItem());
-    //     itemId.setCategoria(itemDoacaoCreatedDto.getCategoria());
-    //     itemId.setDescricao(itemDoacaoCreatedDto.getDescricao());
-    //     itemId.setQuantidade(itemDoacaoCreatedDto.getQuantidade());
-    //     itemId.setEstadoDeConversao(itemDoacaoCreatedDto.getEstadoDeConversao());
-    //     itemId.setStatusItem(itemDoacaoCreatedDto.getStatusItem());
-    //     // itemId.setDataDoacao(itemDoacaoCreatedDto.getDataDoacao());
+        doadorRepository.save(doador);
+    }
 
-    //     return itemId;
-    // }
+    public void atualizarDadosItem(Integer id, ItemDoacaoCreatedDto itemDoacaoCreatedDto) {
+        ItemDoacao item = itemDoacaoRepository.findById(id)
+            .orElseThrow(() -> new BusinessException("Item não encontrado")); 
+
+        item.setNomeItem(itemDoacaoCreatedDto.getNomeItem());
+        item.setCategoria(itemDoacaoCreatedDto.getCategoria());
+        item.setDescricao(itemDoacaoCreatedDto.getDescricao());
+        item.setQuantidade(itemDoacaoCreatedDto.getQuantidade());
+        item.setEstadoDeConversao(itemDoacaoCreatedDto.getEstadoDeConversao());
+
+        if (item.getQuantidade() < 0) {
+            throw new BusinessException("Quantidade deve ser maior que zero");
+        }
+        
+        itemDoacaoRepository.save(item);
+    }
 
     public void deletarItemDoacao(Integer id) {
         if (!itemDoacaoRepository.existsById(id)) {

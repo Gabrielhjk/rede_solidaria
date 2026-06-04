@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 
 import rede_solidaria.service.DoacaoEfetivadaService;
 import rede_solidaria.service.DoadorService;
 import rede_solidaria.database.model.enums.StatusItem;
+import rede_solidaria.dto.doadorDto.DoadorCreatedDto;
 import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoCreatedDto;
 import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoResponseDto;
 import rede_solidaria.dto.loginDto.LoginDto;
@@ -29,12 +31,19 @@ public class DoadorController {
     private final DoadorService doadorService;
     private final DoadorService itemDoacaoService;
     private final DoacaoEfetivadaService doacaoEfetivadaService;
-
+    
     // endpoint de login de doador
     @PostMapping("/logar")
     public ResponseEntity<String> logar(@RequestBody LoginDto loginDto) {
         doadorService.logar(loginDto);
         return new ResponseEntity<>("Login realizado com sucesso", HttpStatus.OK);
+    }
+ 
+    // endpoint para atualizar informacoes do doador
+    @PutMapping("/atualizar")
+    public ResponseEntity<String> atualizarDoador(Integer id, @RequestBody DoadorCreatedDto doadorCreatedDto) {
+        doadorService.atualizarDadosDoador(id, doadorCreatedDto);
+        return new ResponseEntity<>("Doador atualizado", HttpStatus.OK);
     }
 
     // endpoint para listar itens do doador 
@@ -46,20 +55,22 @@ public class DoadorController {
     // endpoint para listar item por id
     @GetMapping("/itens/{id}")
     public ResponseEntity<ItemDoacaoResponseDto> listarItem(@PathVariable Integer id) {
-        return new ResponseEntity<>(doadorService.listarItem(id), HttpStatus.OK);
+        return new ResponseEntity<>(itemDoacaoService.listarItem(id), HttpStatus.OK);
     }
 
     // endpoint para cadastar item para doacao
     @PostMapping("/itens/cadastrar")
-    public ResponseEntity<String> cadastrarItemDoacao(@RequestBody ItemDoacaoCreatedDto itemDoacaoEfetivadaCreatedDto) {
-        itemDoacaoService.cadastrarItemDoacao(itemDoacaoEfetivadaCreatedDto);
+    public ResponseEntity<String> cadastrarItemDoacao(@RequestBody ItemDoacaoCreatedDto itemDoacaoCreatedDto) {
+        itemDoacaoService.cadastrarItemDoacao(itemDoacaoCreatedDto);
         return new ResponseEntity<>("Item cadastrado com sucesso", HttpStatus.CREATED);
     }
 
-    // @PutMapping("/{id}")
-    // public ResponseEntity<ItemDoacaoResponseDto> atualizarDadosItem(@PathVariable Integer id, @RequestBody ItemDoacaoEfetivadaCreatedDto itemDoacaoEfetivadaCreatedDto) {
-    //     return new ResponseEntity<>(itemDoacaoService.atualizarDadosItem(id, itemDoacaoEfetivadaCreatedDto), HttpStatus.OK);
-    // }
+    // endpoint para atualizar item 
+    @PutMapping("/itens/{id}")
+    public ResponseEntity<String> atualizarDadosItem(@PathVariable Integer id, @RequestBody ItemDoacaoCreatedDto itemDoacaoCreatedDto) {
+        itemDoacaoService.atualizarDadosItem(id, itemDoacaoCreatedDto);
+        return new ResponseEntity<>("Item atualizado", HttpStatus.OK);
+    }
 
     // endpoint para excluir item
     @DeleteMapping("/itens/{id}")
@@ -71,7 +82,7 @@ public class DoadorController {
     // endpoint para atualizar status do item
     @PutMapping("/itens/{id}/status")
     public ResponseEntity<String> atualizarStatus(@PathVariable Integer id, @RequestParam ("status") StatusItem statusItem) {
-        doadorService.atualizarStatus(id, statusItem);
+        itemDoacaoService.atualizarStatus(id, statusItem);
         return new ResponseEntity<>("Status Atualizado", HttpStatus.OK);
     }
 

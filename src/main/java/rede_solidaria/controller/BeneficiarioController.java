@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +17,7 @@ import lombok.AllArgsConstructor;
 import rede_solidaria.database.model.enums.StatusItem;
 import rede_solidaria.dto.SolicitacaoDto.SolicitacaoCreatedDto;
 import rede_solidaria.dto.SolicitacaoDto.SolicitacaoResponseDto;
+import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
 import rede_solidaria.dto.doadorDto.DoadorResponseDto;
 import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoResponseDto;
 import rede_solidaria.dto.loginDto.LoginDto;
@@ -32,6 +34,13 @@ public class BeneficiarioController {
     public ResponseEntity<String> logar(@RequestBody LoginDto loginDto) {
         beneficiarioService.logar(loginDto);
         return new ResponseEntity<>("Usuário logado com sucesso", HttpStatus.OK);
+    }
+
+    // endpoint para atualizar informacoes do beneficiario
+    @PutMapping("/atualizar")
+    public ResponseEntity<String> atualizarBenefiicario(Integer id, @RequestBody BeneficiarioCreatedDto beneficiarioCreatedDto) {
+        beneficiarioService.atualizarDadosBeneficiario(id, beneficiarioCreatedDto);
+        return new ResponseEntity<>("Beneficiario atualizado", HttpStatus.OK);
     }
 
     // endpoint para listar todos os doadores
@@ -66,9 +75,9 @@ public class BeneficiarioController {
 
     // endpoint para solicitar item
     @PostMapping("/solicitacoes/solicitar")
-    public ResponseEntity<Void> solicitarItem(@RequestBody SolicitacaoCreatedDto solicitacaoCreatedDto) {
+    public ResponseEntity<String> solicitarItem(@RequestBody SolicitacaoCreatedDto solicitacaoCreatedDto) {
         beneficiarioService.solicitarItem(solicitacaoCreatedDto);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>("Solicitação Realizada", HttpStatus.CREATED);
     }
 
     // endpoint para listar solicitacoes realizadas

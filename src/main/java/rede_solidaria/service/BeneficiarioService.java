@@ -19,6 +19,8 @@ import rede_solidaria.dto.loginDto.LoginDto;
 import rede_solidaria.handler.BusinessException;
 import rede_solidaria.dto.SolicitacaoDto.SolicitacaoCreatedDto;
 import rede_solidaria.dto.SolicitacaoDto.SolicitacaoResponseDto;
+import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
+import rede_solidaria.dto.doadorDto.DoadorCreatedDto;
 import rede_solidaria.dto.doadorDto.DoadorResponseDto;
 import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoResponseDto;
 
@@ -58,11 +60,25 @@ public class BeneficiarioService {
             .build();
     }
 
-    // realiza o login do beneficiario
+    // valida e realiza o login do beneficiario
     public void logar(LoginDto loginDto) {
         if (!beneficiarioRepository.existsByEmailAndSenha(loginDto.getEmail(), loginDto.getSenha())) {
             throw new BusinessException("Email ou senha inválidos ou não existe");
         }   
+    }
+
+    public void atualizarDadosBeneficiario (Integer id, BeneficiarioCreatedDto beneficiarioCreatedDto) {
+        Beneficiario beneficiario = beneficiarioRepository.findById(id)
+            .orElseThrow(() -> new BusinessException("Beneficiario não encontrado")); 
+    
+        beneficiario.setNome(beneficiarioCreatedDto.getNome());
+        beneficiario.setTelefone(beneficiarioCreatedDto.getTelefone());
+        beneficiario.setEmail(beneficiarioCreatedDto.getEmail());
+        beneficiario.setSenha(beneficiarioCreatedDto.getSenha());
+        beneficiario.setEndereco(beneficiarioCreatedDto.getEndereco());
+        beneficiario.setTipoBeneficiario(beneficiarioCreatedDto.getTipoBeneficiario());
+
+        beneficiarioRepository.save(beneficiario);
     }
 
     public List<DoadorResponseDto> listarDoadores() {

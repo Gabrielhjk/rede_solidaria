@@ -26,7 +26,7 @@ public class ItemDoacaoCreatedDto {
     @Size(max = 255, message = "A descrição deve conter no máximo 255 caracteres")
     private String descricao;
     @NotBlank(message = "A quantidade é obrigatória")
-    @Min(value = 1, message = "A quantidade deve ser maior ou igual a 1")
+    @Min(1)
     private Integer quantidade;
     @NotBlank(message = "O estado de conversão é obrigatório")
     private String estadoDeConversao;
