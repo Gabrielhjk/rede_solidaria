@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import rede_solidaria.service.DoacaoEfetivadaService;
 import rede_solidaria.service.DoadorService;
 import rede_solidaria.database.model.enums.StatusItem;
 import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoCreatedDto;
@@ -27,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class DoadorController {
     private final DoadorService doadorService;
     private final DoadorService itemDoacaoService;
+    private final DoacaoEfetivadaService doacaoEfetivadaService;
 
     @PostMapping("/logar")
     public ResponseEntity<String> logar(@RequestBody LoginDto loginDto) {
@@ -65,6 +67,18 @@ public class DoadorController {
     public ResponseEntity<String> atualizarStatus(@PathVariable Integer id, @RequestParam ("status") StatusItem statusItem) {
         doadorService.atualizarStatus(id, statusItem);
         return new ResponseEntity<>("Status Atualizado", HttpStatus.OK);
+    }
+
+    @PutMapping("/solicitacoes/{id}/aprovar")
+    public ResponseEntity<String> aprovarSolicitacao(@PathVariable Integer id) {
+        doacaoEfetivadaService.aprovarSolicitacao(id);
+        return new ResponseEntity<>("Doação Aprovada", HttpStatus.OK);
+    }
+
+    @PutMapping("/solicitacoes/{id}/rejeitar")
+    public ResponseEntity<String> rejeitarSolicitacao(@PathVariable Integer id) {
+        doacaoEfetivadaService.rejeitarSolicitacao(id);
+        return new ResponseEntity<>("Solicitação Rejeitada", HttpStatus.OK);
     }
 
 }
