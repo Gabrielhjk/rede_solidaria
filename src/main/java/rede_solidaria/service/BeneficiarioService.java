@@ -97,6 +97,10 @@ public class BeneficiarioService {
             throw new BusinessException("Quantidade Inválida");
         }
 
+        if (solicitacaoCreatedDto.getQuantidadeSolicitada() > itemDoacao.getQuantidade()) {
+            throw new BusinessException("Quantidade Inválida");
+        }
+
         Solicitacao solicitacao = Solicitacao.builder()
             .quantidadeSolicitada(solicitacaoCreatedDto.getQuantidadeSolicitada())
             .justificativa(solicitacaoCreatedDto.getJustificativa())

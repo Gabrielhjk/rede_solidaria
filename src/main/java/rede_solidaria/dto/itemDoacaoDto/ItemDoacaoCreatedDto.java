@@ -1,6 +1,5 @@
 package rede_solidaria.dto.itemDoacaoDto;
 
-import rede_solidaria.database.model.enums.StatusItem;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -31,8 +30,6 @@ public class ItemDoacaoCreatedDto {
     private Integer quantidade;
     @NotBlank(message = "O estado de conversão é obrigatório")
     private String estadoDeConversao;
-    @NotNull(message = "O status do item é obrigatório")
-    private StatusItem statusItem;
     @NotNull(message = "É obrigatório informar o doador")
     private Integer DoadorId;
 }

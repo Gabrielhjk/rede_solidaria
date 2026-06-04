@@ -7,8 +7,6 @@ import rede_solidaria.database.model.Solicitacao;
 import rede_solidaria.dto.SolicitacaoDto.SolicitacaoResponseDto;
 
 // + validarSolicitação()
-// + aprovar()
-// + rejeitar()
 
 @Service
 @RequiredArgsConstructor

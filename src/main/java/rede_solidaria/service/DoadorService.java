@@ -81,7 +81,7 @@ public class DoadorService {
             .descricao(itemDoacaoCreatedDto.getDescricao())
             .quantidade(itemDoacaoCreatedDto.getQuantidade())
             .estadoDeConversao(itemDoacaoCreatedDto.getEstadoDeConversao())
-            .statusItem(itemDoacaoCreatedDto.getStatusItem())
+            .statusItem(StatusItem.DISPONIVEL)
             .doador(doador)
             .build();
 
