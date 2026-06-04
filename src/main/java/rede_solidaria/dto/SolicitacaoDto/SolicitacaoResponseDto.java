@@ -25,4 +25,8 @@ public class SolicitacaoResponseDto {
     private String justificativa;
     @NotNull
     private StatusSolicitacao statusSolicitacao;    
+    @NotBlank
+    private String beneficiario;
+    @NotBlank
+    private String itemDoacao;
 }

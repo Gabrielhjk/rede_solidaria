@@ -14,13 +14,15 @@ import rede_solidaria.dto.SolicitacaoDto.SolicitacaoResponseDto;
 @RequiredArgsConstructor
 public class SolicitacaoService {
     
+    // conversao do model para Dto
     public SolicitacaoResponseDto converterParaDto(Solicitacao solicitacao) {
         return SolicitacaoResponseDto.builder()
             .id(solicitacao.getId())
+            .quantidadeSolicitada(solicitacao.getQuantidadeSolicitada())
+            .justificativa(solicitacao.getJustificativa())
             .beneficiario(solicitacao.getBeneficiario().getNome())
             .itemDoacao(solicitacao.getItemDoacao().getNomeItem())
-            .status(solicitacao.getStatusSolicitacao())
+            .statusSolicitacao(solicitacao.getStatusSolicitacao())
             .build();
-        
     }
 }

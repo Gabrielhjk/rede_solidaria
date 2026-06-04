@@ -20,10 +20,9 @@ import lombok.RequiredArgsConstructor;
 // + atualizarDadosItem()  
 // + removerItem() feito
 // + listarItems() feito
-// + buscarItem()  
+// + buscarItem() buscar por id do item 
 // + doarItem()
 // + atualizarStatus() 
-// + verificarDisponibilidade() filtrar por status do item
 // + atualizarEstoque()
 // + logar() feito
 

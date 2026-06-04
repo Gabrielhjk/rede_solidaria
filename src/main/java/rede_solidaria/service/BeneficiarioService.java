@@ -23,7 +23,7 @@ import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoResponseDto;
 // + buscarItensDisponiveis() filtrar por status do item - feito
 // + obterNivelPrioridade() filtar por prioridade - feito
 // + solicitarItem() 
-// + listarSolicitacoes() filtrar por status de solicitacao
+// + listarSolicitacoes() - feito
 // + logar() - feito
 
 
@@ -35,6 +35,7 @@ public class BeneficiarioService {
     private final BeneficiarioRepository beneficiarioRepository;
     private final ItemDoacaoRepository itemDoacaoRepository;
     private final SolicitacaoRepository solicitacaoRepository;
+    private final SolicitacaoService solicitacaoService;
 
     // conversao do model para Dto
     private ItemDoacaoResponseDto converterParaDto(ItemDoacao itemDoacao) {
@@ -76,6 +77,7 @@ public class BeneficiarioService {
     public List<SolicitacaoResponseDto> listarSolicitacoes() {
         return solicitacaoRepository.findAll()
                                     .stream()
-                                    .map(this)
+                                    .map(solicitacaoService::converterParaDto)
+                                    .toList();
     }
 }
