@@ -52,23 +52,6 @@ public class AdministradorDoadorService {
             // salva no banco 
             administradorDoadorRepository.save(novoDoador);
     }
-    
-    // ver se vou permitir que o admin possa atualizar os dados do doador, ou se ele so pode cadastrar, listar e deletar
-    // public Doador atualizarDadosDoador(Integer id, DoadorDto doadorDto) {
-    //     Doador doadorId = doadores.stream()
-    //         .filter(d -> d.getId().equals(id))
-    //         .findAny()
-    //         .orElseThrow(null);
-
-    //     doadorId.setNome(doadorDto.getNome());
-    //     doadorId.setTelefone(doadorDto.telefone());
-    //     doadorId.setEmail(doadorDto.getEmail());
-    //     doadorId.setSenha(doadorDto.getSEnha());
-    //     doadorId.setEndereco(doadorDto.getEndereco());
-
-    //     return doadorId;
-    // }
-
 
     public void deletarDoador(Integer id) {
         // valida se o id do doador existe

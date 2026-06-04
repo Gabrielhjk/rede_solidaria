@@ -10,8 +10,6 @@ import rede_solidaria.database.repository.ItemDoacaoRepository;
 import rede_solidaria.database.repository.SolicitacaoRepository;
 import rede_solidaria.handler.BusinessException;
 
-// + efetivarDoacao() - feito
-
 @Service
 @AllArgsConstructor
 public class DoacaoEfetivadaService {

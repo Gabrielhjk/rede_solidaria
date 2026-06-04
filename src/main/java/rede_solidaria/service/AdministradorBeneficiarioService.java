@@ -12,8 +12,6 @@ import rede_solidaria.dto.beneficiarioDto.BeneficiarioResponseDto;
 import rede_solidaria.handler.BusinessException;
 import rede_solidaria.database.repository.AdministradorBeneficiarioRepository;
 
-// + obterNivelPrioridade() filtar por prioridade - feito
-
 @Service
 @RequiredArgsConstructor
 public class AdministradorBeneficiarioService {
