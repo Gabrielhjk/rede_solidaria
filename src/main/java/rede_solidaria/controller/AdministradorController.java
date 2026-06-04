@@ -17,6 +17,7 @@ import rede_solidaria.service.AdministradorService;
 public class AdministradorController {
     private AdministradorService administradorService;
 
+    // endpoint de login do administrador
     @PostMapping("/logar")
     public ResponseEntity<String> logar(@RequestBody LoginDto loginDto) {
         administradorService.logar(loginDto);

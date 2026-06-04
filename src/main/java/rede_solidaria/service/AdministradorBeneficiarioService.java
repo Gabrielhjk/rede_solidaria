@@ -11,6 +11,9 @@ import rede_solidaria.dto.beneficiarioDto.BeneficiarioCreatedDto;
 import rede_solidaria.dto.beneficiarioDto.BeneficiarioResponseDto;
 import rede_solidaria.handler.BusinessException;
 import rede_solidaria.database.repository.AdministradorBeneficiarioRepository;
+import rede_solidaria.database.repository.BeneficiarioRepository;
+
+// + obterNivelPrioridade() filtar por prioridade - feito
 
 @Service
 @RequiredArgsConstructor
@@ -39,10 +42,12 @@ public class AdministradorBeneficiarioService {
 
     public void cadastrarBeneficiario(BeneficiarioCreatedDto beneficiarioCreatedDto) {
 
+        // validando se o email existe no banco 
         if (administradorBeneficiarioRepository.existsByEmail(beneficiarioCreatedDto.getEmail())) {
             throw new BusinessException("Beneficiário já cadastrado com este email.");
         }        
 
+        // conversao do dto para model
         Beneficiario novoBeneficiario = Beneficiario.builder()
             .nome(beneficiarioCreatedDto.getNome())
             .telefone(beneficiarioCreatedDto.getTelefone())
@@ -53,6 +58,7 @@ public class AdministradorBeneficiarioService {
             .nivelPrioridade(beneficiarioCreatedDto.getNivelPrioridade())
             .build();
             
+        // salva no banco 
         administradorBeneficiarioRepository.save(novoBeneficiario);
 
     }
@@ -76,6 +82,12 @@ public class AdministradorBeneficiarioService {
     // }
 
     public void deletarBeneficiario(Integer id) {
+        // valida se o id do beneficiario existe
+        if (!administradorBeneficiarioRepository.existsById(id)) {
+            throw new BusinessException("Beneficiario não encontrado");
+        }
+
+        // deleta beneficiario no banco 
         administradorBeneficiarioRepository.deleteById(id);;
     }
 

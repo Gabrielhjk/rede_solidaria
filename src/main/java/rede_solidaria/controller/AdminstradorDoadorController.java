@@ -26,17 +26,20 @@ import rede_solidaria.service.AdministradorDoadorService;
 public class AdminstradorDoadorController {
     private final AdministradorDoadorService administradorDoadorService;
 
+    // endpoint para listar todos os doadores
     @GetMapping("/doadores/listar")
     public ResponseEntity<List<DoadorResponseDto>> listarDoadores() {
         return new ResponseEntity<>(administradorDoadorService.listarDoadores(), HttpStatus.OK);
     }
 
+    // endpoint para cadastar doadores
     @PostMapping("/doadores/cadastrar")
     public ResponseEntity<String> cadastrarDoador(@Valid @RequestBody DoadorCreatedDto doadorCreatedDto) {
         administradorDoadorService.cadastrarDoador(doadorCreatedDto);
         return new ResponseEntity<>("Doador cadastrado com sucesso", HttpStatus.CREATED);
     }
 
+    // endpoint para excluir doadores
     @DeleteMapping("/doadores/{id}")
     public ResponseEntity<String> deletarDoador(@PathVariable Integer id) {
         administradorDoadorService.deletarDoador(id);

@@ -31,23 +31,27 @@ import lombok.RequiredArgsConstructor;
 public class AdminstradorBeneficiarioController {
     private final AdministradorBeneficiarioService administradorBeneficiarioService;
     
+    // endpoint para listar todos os beneficiarios
     @GetMapping("/beneficiarios/listar")
     public ResponseEntity<List<BeneficiarioResponseDto>> listarBeneficiarios() {
         return new ResponseEntity<>(administradorBeneficiarioService.listarBeneficiarios(), HttpStatus.OK);
     }
 
+    // endpoint para cadastrar beneficiarios
     @PostMapping("/beneficiarios/cadastrar")
     public ResponseEntity<String> cadastrarBeneficiario(@Valid @RequestBody BeneficiarioCreatedDto beneficiarioCreatedDto) {
         administradorBeneficiarioService.cadastrarBeneficiario(beneficiarioCreatedDto);
         return new ResponseEntity<>("Beneficiário cadastrado com sucesso", HttpStatus.CREATED);
     }
-    
+
+    // endpoint para excluir beneficiarios
     @DeleteMapping("/beneficiarios/{id}")
     public ResponseEntity<String> deletarBeneficiario(@PathVariable Integer id) {
         administradorBeneficiarioService.deletarBeneficiario(id);
         return new ResponseEntity<>("Beneficiário deletado com sucesso", HttpStatus.NO_CONTENT);
     }
 
+    // endpoint para listar os beneficiarios por nivel de prioridade
     @GetMapping("/beneficiarios/nivelPrioridade")
     public ResponseEntity<List<BeneficiarioResponseDto>> buscarBeneficiarioPorNivelPrioridade(@RequestParam("nivelPrioridade") NivelPrioridade nivelPrioridade) {
         return new ResponseEntity<>(administradorBeneficiarioService.buscarItensPorNivelPrioridade(nivelPrioridade), HttpStatus.OK);

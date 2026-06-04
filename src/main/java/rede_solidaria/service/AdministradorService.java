@@ -12,6 +12,7 @@ import rede_solidaria.handler.BusinessException;
 public class AdministradorService {
     private final AdministradoRepository administradoRepository;
 
+    // valida e realiza o login do administrador
     public void logar(LoginDto loginDto) {
         if (!administradoRepository.existsByEmailAndSenha(loginDto.getEmail(), loginDto.getSenha())) {
             throw new BusinessException("Email ou senha inválidos ou não existe");

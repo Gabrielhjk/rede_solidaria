@@ -35,7 +35,7 @@ public class DoadorService {
     private final ItemDoacaoRepository itemDoacaoRepository;
     private final AdministradorDoadorRepository administradorDoadorRepository;
 
-    
+    // realiza o login do doador
     public void logar(LoginDto loginDto) {
         if (!doadorRepository.existsByEmailAndSenha(loginDto.getEmail(), loginDto.getSenha())) {
             throw new BusinessException("Email ou senha inválidos ou não existe");
@@ -75,6 +75,7 @@ public class DoadorService {
         Doador doador = administradorDoadorRepository.findById(itemDoacaoCreatedDto.getDoadorId())
         .orElseThrow(() -> new BusinessException("Doador não encontrado"));
 
+        // conversao do dto para model
         ItemDoacao novoItem = ItemDoacao.builder()
             .nomeItem(itemDoacaoCreatedDto.getNomeItem())
             .categoria(itemDoacaoCreatedDto.getCategoria())

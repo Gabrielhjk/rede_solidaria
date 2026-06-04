@@ -26,33 +26,39 @@ import rede_solidaria.service.BeneficiarioService;
 public class BeneficiarioController {
     private final BeneficiarioService beneficiarioService;
 
+    // endpoint de login para beneficiario
     @PostMapping("/logar")
     public ResponseEntity<String> logar(@RequestBody LoginDto loginDto) {
         beneficiarioService.logar(loginDto);
         return new ResponseEntity<>("Usuário logado com sucesso", HttpStatus.OK);
     }
 
+    // endpoint para listar todos os doadores
     @GetMapping("/doadores/listar")
     public ResponseEntity<List<DoadorResponseDto>> listarDoadores() {
         return new ResponseEntity<>(beneficiarioService.listarDoadores(), HttpStatus.OK);
     }
 
+    // endpoint para listar todos os itens para doacao
     @GetMapping("/itens/listar")
     public ResponseEntity<List<ItemDoacaoResponseDto>> listarItens() {
         return new ResponseEntity<>(beneficiarioService.listarItens(), HttpStatus.OK);
     }
 
+    // endpoint para filtar item por status
     @GetMapping("/itens/status")
     public ResponseEntity<List<ItemDoacaoResponseDto>> buscarItensPorStatus(@RequestParam("status") StatusItem statusItem) {
         return new ResponseEntity<>(beneficiarioService.buscarItensPorStatus(statusItem), HttpStatus.OK);
     }
 
+    // endpoint para solicitar item
     @PostMapping("/solicitacoes/solicitar")
     public ResponseEntity<Void> solicitarItem(@RequestBody SolicitacaoCreatedDto solicitacaoCreatedDto) {
         beneficiarioService.solicitarItem(solicitacaoCreatedDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    // endpoint para listar solicitacoes realizadas
     @GetMapping("/solicitacoes/listar")
     public ResponseEntity<List<SolicitacaoResponseDto>> listarSolicitacoes() {
         return new ResponseEntity<>(beneficiarioService.listarSolicitacoes(), HttpStatus.OK);

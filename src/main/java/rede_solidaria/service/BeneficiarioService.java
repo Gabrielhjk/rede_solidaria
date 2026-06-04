@@ -25,7 +25,6 @@ import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoResponseDto;
 // + listarDoadores() - feito
 // + listarItens() - feito
 // + buscarItensDisponiveis() filtrar por status do item - feito
-// + obterNivelPrioridade() filtar por prioridade - feito
 // + solicitarItem() - feito
 // + listarSolicitacoes() - feito
 // + logar() - feito
@@ -56,7 +55,7 @@ public class BeneficiarioService {
             .build();
     }
 
-
+    // realiza o login do beneficiario
     public void logar(LoginDto loginDto) {
         if (!beneficiarioRepository.existsByEmailAndSenha(loginDto.getEmail(), loginDto.getSenha())) {
             throw new BusinessException("Email ou senha inválidos ou não existe");
@@ -101,6 +100,7 @@ public class BeneficiarioService {
             throw new BusinessException("Quantidade Inválida");
         }
 
+        // conversao do dto para model
         Solicitacao solicitacao = Solicitacao.builder()
             .quantidadeSolicitada(solicitacaoCreatedDto.getQuantidadeSolicitada())
             .justificativa(solicitacaoCreatedDto.getJustificativa())

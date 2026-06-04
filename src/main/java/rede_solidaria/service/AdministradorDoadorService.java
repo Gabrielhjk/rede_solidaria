@@ -35,10 +35,12 @@ public class AdministradorDoadorService {
     }
 
     public void cadastrarDoador(DoadorCreatedDto doadorCreatedDto) {
+        // valida se o email existe no banco 
         if (administradorDoadorRepository.existsByEmail(doadorCreatedDto.getEmail())) {
             throw new BusinessException("Doador já cadastrado com este email.");
         }
 
+        // conversao do dto para model
         Doador novoDoador = Doador.builder()
             .nome(doadorCreatedDto.getNome())
             .telefone(doadorCreatedDto.getTelefone())
@@ -47,6 +49,7 @@ public class AdministradorDoadorService {
             .endereco(doadorCreatedDto.getEndereco())
             .build();
         
+            // salva no banco 
             administradorDoadorRepository.save(novoDoador);
     }
     
@@ -68,10 +71,12 @@ public class AdministradorDoadorService {
 
 
     public void deletarDoador(Integer id) {
+        // valida se o id do doador existe
         if (!administradorDoadorRepository.existsById(id)) {
             throw new BusinessException("Doado não encontrado");
         }
-
+        
+        // deleta doador no banco
         administradorDoadorRepository.deleteById(id);
     }
 }
