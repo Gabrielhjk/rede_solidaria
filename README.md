@@ -41,13 +41,6 @@ src/
 ---
 
 
-assets/projeto_java.png
-
-
-
----
-
-
 ## 📦 Funcionalidades
 
 ### Funcionalidades do Administrador (Admin)
