@@ -1,1 +1,0 @@
-// metodos que sao usados em varios lugares da aplicacao
