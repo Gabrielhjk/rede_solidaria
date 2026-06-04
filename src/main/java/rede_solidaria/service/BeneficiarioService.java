@@ -100,7 +100,7 @@ public class BeneficiarioService {
         Solicitacao solicitacao = Solicitacao.builder()
             .quantidadeSolicitada(solicitacaoCreatedDto.getQuantidadeSolicitada())
             .justificativa(solicitacaoCreatedDto.getJustificativa())
-            .statusSolicitacao(StatusSolicitacao.EM_ANDAMENTO)
+            .statusSolicitacao(StatusSolicitacao.PENDENTE)
             .beneficiario(beneficiario)
             .itemDoacao(itemDoacao)
             .build();

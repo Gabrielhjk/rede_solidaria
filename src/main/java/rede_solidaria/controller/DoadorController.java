@@ -7,13 +7,15 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import rede_solidaria.service.DoadorService;
+import rede_solidaria.database.model.enums.StatusItem;
 import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoCreatedDto;
 import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoResponseDto;
 import rede_solidaria.dto.loginDto.LoginDto;
@@ -57,6 +59,12 @@ public class DoadorController {
     public ResponseEntity<String> deletarItemDoacao(@PathVariable Integer id) {
         itemDoacaoService.deletarItemDoacao(id);
         return new ResponseEntity<>("Item deletado com sucesso", HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/itens/{id}/status")
+    public ResponseEntity<String> atualizarStatus(@PathVariable Integer id, @RequestParam ("status") StatusItem statusItem) {
+        doadorService.atualizarStatus(id, statusItem);
+        return new ResponseEntity<>("Status Atualizado", HttpStatus.OK);
     }
 
 }

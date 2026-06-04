@@ -4,6 +4,7 @@ import java.util.List;
 
 import rede_solidaria.database.model.Doador;
 import rede_solidaria.database.model.ItemDoacao;
+import rede_solidaria.database.model.enums.StatusItem;
 import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoCreatedDto;
 import rede_solidaria.dto.itemDoacaoDto.ItemDoacaoResponseDto;
 import rede_solidaria.dto.loginDto.LoginDto;
@@ -20,8 +21,8 @@ import lombok.RequiredArgsConstructor;
 // + atualizarDadosItem()  
 // + removerItem() feito
 // + listarItems() feito
-// + buscarItem() buscar por id do item 
-// + atualizarStatus() 
+// + buscarItem() buscar por id do item - feito
+// + atualizarStatus() - feito
 // + atualizarEstoque()
 // + logar() feito
 
@@ -114,5 +115,14 @@ public class DoadorService {
         }
 
         itemDoacaoRepository.deleteById(id);
+    }
+
+    public void atualizarStatus (Integer id, StatusItem statusItem) {
+        ItemDoacao item = itemDoacaoRepository.findById(id)
+        .orElseThrow(() -> new BusinessException("Item não encontrado"));
+
+        item.setStatusItem(statusItem);
+
+        itemDoacaoRepository.save(item);
     }
 }
